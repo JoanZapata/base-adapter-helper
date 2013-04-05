@@ -57,7 +57,7 @@ static class ContactsViewHolder {
 public View getView(int position, View convertView, ViewGroup parent) {
     Contact contact = contacts.get(position);
     return BaseAdapterHelper.get(context, convertView, parent)
-            .layout(R.layout.item)
+            .layout(R.layout.contact_row)
             .setText(R.id.tvName, contact.getName())
             .setText(R.id.tvEmails, contact.getEmails().toString())
             .setText(R.id.tvNumbers, contact.getNumbers().toString())
