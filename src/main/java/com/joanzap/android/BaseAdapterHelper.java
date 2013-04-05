@@ -10,6 +10,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+/**
+ * 
+ * Allows an abstraction of the ViewHolder pattern.<br>
+ * <br>
+ * 
+ * <b>Usage</b>
+ * 
+ * <pre>
+ * return BaseAdapterHelper.get(context, convertView, parent)
+ *              .layout(R.layout.item)
+ *              .setText(R.id.tvName, contact.getName())
+ *              .setText(R.id.tvEmails, contact.getEmails().toString())
+ *              .setText(R.id.tvNumbers, contact.getNumbers().toString())
+ *              .build();
+ * </pre>
+ * 
+ * @author jzapata
+ * 
+ */
 public class BaseAdapterHelper {
     private View convertView;
     private int layoutId;
@@ -17,6 +36,17 @@ public class BaseAdapterHelper {
     private final List<IdValue> actions;
     private ViewGroup parent;
 
+    /**
+     * This method is the only entry point to get a BaseAdapterHelper.
+     * 
+     * @param context
+     *            The current context
+     * @param convertView
+     *            the convertView arg passed to the getView() method
+     * @param parent
+     *            the parent arg passed to the getView() method
+     * @return A BaseAdapterHelper
+     */
     public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent) {
         return new BaseAdapterHelper(context, convertView, parent);
     }
@@ -28,16 +58,22 @@ public class BaseAdapterHelper {
         this.parent = parent;
     }
 
+    /** Set the layout id */
     public BaseAdapterHelper layout(int layoutId) {
         this.layoutId = layoutId;
         return this;
     }
 
+    /**
+     * Add an action to set the text of a text view. Can be called multiple
+     * times.
+     */
     public BaseAdapterHelper setText(int viewId, String value) {
         actions.add(new IdValue(viewId, value, Action.SET_TEXT));
         return this;
     }
 
+    /** Convert the convertView or Inflate it if needed */
     public View build() {
         ViewHolder holder;
         if (convertView == null) {
