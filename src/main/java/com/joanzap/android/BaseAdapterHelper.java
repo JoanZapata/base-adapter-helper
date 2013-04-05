@@ -7,6 +7,7 @@ import android.content.Context;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class BaseAdapterHelper {
@@ -14,19 +15,17 @@ public class BaseAdapterHelper {
     private int layoutId;
     private final Context context;
     private final List<IdValue> actions;
+    private ViewGroup parent;
 
-    public static BaseAdapterHelper get(Context context) {
-        return new BaseAdapterHelper(context);
+    public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent) {
+        return new BaseAdapterHelper(context, convertView, parent);
     }
 
-    private BaseAdapterHelper(Context context) {
+    private BaseAdapterHelper(Context context, View convertView, ViewGroup parent) {
         actions = new ArrayList<BaseAdapterHelper.IdValue>();
         this.context = context;
-    }
-
-    public BaseAdapterHelper convertView(View convertView) {
         this.convertView = convertView;
-        return this;
+        this.parent = parent;
     }
 
     public BaseAdapterHelper layout(int layoutId) {
@@ -47,7 +46,7 @@ public class BaseAdapterHelper {
             // the view and execute all the actions
             convertView = LayoutInflater//
                     .from(context) //
-                    .inflate(layoutId, null);
+                    .inflate(layoutId, parent, false);
 
             holder = new ViewHolder(actions.size());
             for (IdValue key : actions) {
@@ -115,7 +114,6 @@ public class BaseAdapterHelper {
                 break;
             }
         }
-
     }
 
     private static class IdValue {
