@@ -56,21 +56,23 @@ static class ContactsViewHolder {
 @Override
 public View getView(int position, View convertView, ViewGroup parent) {
     Contact contact = contacts.get(position);
-    return BaseAdapterHelper.get(context, convertView, parent)
-            .layout(R.layout.contact_row)
+    return BaseAdapterHelper.get(context, convertView, parent, R.layout.contact_row)
             .setText(R.id.tvName, contact.getName())
             .setText(R.id.tvEmails, contact.getEmails().toString())
             .setText(R.id.tvNumbers, contact.getNumbers().toString())
-            .build();
+            .getView();
 }
 ```
 
 And that's it!
 
+# Features
+
+For now you can use:
+
+* ```setText()``` Calls setText(String) on any TextView
+* ```setAlpha()``` Calls setAlpha(float) on any View
+
 # Impacts
 
-You'll have a slight peformance loss compared to the hard coded version.
-
-References to views in the ```ViewHolder``` are held in a ```SparseArray``` instead of being directly accessed as class fields. The ```build()``` method loops through the action list and match actions with views in this sparse array. SparseArray has a complexity ```(log2(N) + 1)```, which means ```build()``` has a complexity of ```N * (log2(N) + 1)``` .
-
-**It's still very valuable compared to the ```findViewById()``` version.**
+You'll have a slight performance loss compared to the hard coded version. References to views in the ```ViewHolder``` are held in a ```SparseArray``` instead of being directly accessed as class fields.

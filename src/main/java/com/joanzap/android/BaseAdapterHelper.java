@@ -1,8 +1,5 @@
 package com.joanzap.android;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -18,23 +15,20 @@ import android.widget.TextView;
  * <b>Usage</b>
  * 
  * <pre>
- * return BaseAdapterHelper.get(context, convertView, parent)
- *              .layout(R.layout.item)
- *              .setText(R.id.tvName, contact.getName())
- *              .setText(R.id.tvEmails, contact.getEmails().toString())
- *              .setText(R.id.tvNumbers, contact.getNumbers().toString())
- *              .build();
+ * return BaseAdapterHelper.get(context, convertView, parent).layout(R.layout.item)
+ *         .setText(R.id.tvName, contact.getName()).setText(R.id.tvEmails, contact.getEmails().toString())
+ *         .setText(R.id.tvNumbers, contact.getNumbers().toString()).build();
  * </pre>
  * 
  * @author jzapata
  * 
  */
 public class BaseAdapterHelper {
+
+    /** Views indexed with their IDs */
+    private final SparseArray<View> views;
+
     private View convertView;
-    private int layoutId;
-    private final Context context;
-    private final List<IdValue> actions;
-    private ViewGroup parent;
 
     /**
      * This method is the only entry point to get a BaseAdapterHelper.
@@ -47,21 +41,19 @@ public class BaseAdapterHelper {
      *            the parent arg passed to the getView() method
      * @return A BaseAdapterHelper
      */
-    public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent) {
-        return new BaseAdapterHelper(context, convertView, parent);
+    public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent, int layoutId) {
+        if (convertView == null) {
+            return new BaseAdapterHelper(context, parent, layoutId);
+        } else {
+            return (BaseAdapterHelper) convertView.getTag();
+        }
     }
 
-    private BaseAdapterHelper(Context context, View convertView, ViewGroup parent) {
-        actions = new ArrayList<BaseAdapterHelper.IdValue>();
-        this.context = context;
-        this.convertView = convertView;
-        this.parent = parent;
-    }
-
-    /** Set the layout id */
-    public BaseAdapterHelper layout(int layoutId) {
-        this.layoutId = layoutId;
-        return this;
+    private BaseAdapterHelper(Context context, ViewGroup parent, int layoutId) {
+        this.views = new SparseArray<View>();
+        convertView = LayoutInflater.from(context) //
+                .inflate(layoutId, parent, false);
+        convertView.setTag(this);
     }
 
     /**
@@ -69,100 +61,33 @@ public class BaseAdapterHelper {
      * times.
      */
     public BaseAdapterHelper setText(int viewId, String value) {
-        actions.add(new IdValue(viewId, value, Action.SET_TEXT));
+        TextView view = retrieveView(viewId);
+        view.setText(value);
         return this;
     }
 
-    /** Convert the convertView or Inflate it if needed */
-    public View build() {
-        ViewHolder holder;
-        if (convertView == null) {
-            // If view doesn't exist, create the view
-            // then create the view holder, put it into
-            // the view and execute all the actions
-            convertView = LayoutInflater//
-                    .from(context) //
-                    .inflate(layoutId, parent, false);
+    /**
+     * Add an action to set the alpha of a view. Can be called multiple times.
+     * Alpha between 0-1.
+     */
+    public BaseAdapterHelper setAlpha(int viewId, float value) {
+        retrieveView(viewId).setAlpha(value);
+        return this;
+    }
 
-            holder = new ViewHolder(actions.size());
-            for (IdValue key : actions) {
-                holder.addKeyAndApply(key.viewId, //
-                        convertView.findViewById(key.viewId), //
-                        key.action, key.value);
-            }
-            convertView.setTag(holder);
-
-        } else {
-
-            // If the view exists already, get the tag
-            // and apply the values
-            holder = (ViewHolder) convertView.getTag();
-            for (IdValue key : actions) {
-                holder.applyValue(key.viewId, key.value);
-            }
-        }
-
+    /** Retrieve the convertView */
+    public View getView() {
         return convertView;
-
     }
 
-    private static class ViewHolder {
-        private final SparseArray<ViewAction> actions;
-
-        public ViewHolder(int nbActions) {
-            actions = new SparseArray<ViewAction>(nbActions);
+    @SuppressWarnings("unchecked")
+    private <T extends View> T retrieveView(int viewId) {
+        View view = views.get(viewId);
+        if (view == null) {
+            view = convertView.findViewById(viewId);
+            views.put(viewId, view);
         }
-
-        public void addKeyAndApply(int viewId, View view, Action action, Object value) {
-            ViewAction viewAction = addKey(viewId, view, action);
-            viewAction.applyValue(value);
-        }
-
-        public ViewAction addKey(int key, View view, Action action) {
-            ViewAction viewAction = new ViewAction(view, action);
-            actions.put(key, viewAction);
-            return viewAction;
-        }
-
-        public void applyValue(Integer key, Object value) {
-            actions.get(key).applyValue(value);
-        }
+        return (T) view;
     }
 
-    private enum Action {
-        SET_TEXT
-    }
-
-    private static class ViewAction {
-        public View view;
-
-        public Action action;
-
-        public ViewAction(View view, Action action) {
-            this.view = view;
-            this.action = action;
-        }
-
-        public void applyValue(Object value) {
-            switch (action) {
-            case SET_TEXT:
-                ((TextView) view).setText((String) value);
-                break;
-            }
-        }
-    }
-
-    private static class IdValue {
-        final int viewId;
-        final Object value;
-        final Action action;
-
-        public IdValue(int viewId, Object value, Action action) {
-            super();
-            this.viewId = viewId;
-            this.value = value;
-            this.action = action;
-        }
-
-    }
 }
