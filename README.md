@@ -2,7 +2,7 @@
 
 ```
 <dependency>
-  <groupId>com.joanzap.android</groupId>
+  <groupId>com.joanzapata.android</groupId>
   <artifactId>base-adapter-helper</artifactId>
   <version>1.0.0</version>
 </dependency>
