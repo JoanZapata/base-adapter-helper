@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="BaseAdapter Helper : Abstraction for the usual BaseAdapter &quot;ViewHolder&quot; pattern" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>BaseAdapter Helper</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/JoanZap/BaseAdapterHelper">View on GitHub</a>
+
+          <h1 id="project_title">BaseAdapter Helper</h1>
+          <h2 id="project_tagline">Abstraction for the usual BaseAdapter &quot;ViewHolder&quot; pattern</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/JoanZap/BaseAdapterHelper/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/JoanZap/BaseAdapterHelper/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Get it</h1>
+
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;com.joanzap.android&lt;/groupId&gt;
+  &lt;artifactId&gt;base-adapter-helper&lt;/artifactId&gt;
+  &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h1>Use it</h1>
+
+<h3>In your <code>BaseAdapter</code> subclass, instead of writting the usual:</h3>
+
+<div class="highlight"><pre><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">v</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Keeps reference to avoid future findViewById()</span>
+    <span class="n">ContactsViewHolder</span> <span class="n">viewHolder</span><span class="o">;</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">LayoutInflater</span> <span class="n">li</span> <span class="o">=</span> <span class="o">(</span><span class="n">LayoutInflater</span><span class="o">)</span> <span class="n">getContext</span><span class="o">().</span><span class="na">getSystemService</span><span class="o">(</span>
+                <span class="n">Context</span><span class="o">.</span><span class="na">LAYOUT_INFLATER_SERVICE</span><span class="o">);</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">contact_row</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+
+        <span class="n">viewHolder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ContactsViewHolder</span><span class="o">();</span>
+        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txName</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="n">v</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvName</span><span class="o">);</span>
+        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txEmails</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="n">v</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvEmails</span><span class="o">);</span>
+        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txPhones</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="n">v</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvNumbers</span><span class="o">);</span>
+
+        <span class="n">v</span><span class="o">.</span><span class="na">setTag</span><span class="o">(</span><span class="n">viewHolder</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">viewHolder</span> <span class="o">=</span> <span class="o">(</span><span class="n">ContactsViewHolder</span><span class="o">)</span> <span class="n">v</span><span class="o">.</span><span class="na">getTag</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="n">Contact</span> <span class="n">contact</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">contact</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txName</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">contact</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txEmails</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">contact</span><span class="o">.</span><span class="na">getEmails</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txPhones</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">contact</span><span class="o">.</span><span class="na">getNumbers</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">static</span> <span class="kd">class</span> <span class="nc">ContactsViewHolder</span> <span class="o">{</span>
+    <span class="n">TextView</span> <span class="n">txName</span><span class="o">;</span>
+    <span class="n">TextView</span> <span class="n">txEmails</span><span class="o">;</span>
+    <span class="n">TextView</span> <span class="n">txPhones</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+
+<blockquote>
+<p><a href="http://www.jmanzano.es/blog/?p=166">Source</a></p>
+</blockquote>
+
+<h3>You can now write</h3>
+
+<div class="highlight"><pre><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Contact</span> <span class="n">contact</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">BaseAdapterHelper</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">contact_row</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvName</span><span class="o">,</span> <span class="n">contact</span><span class="o">.</span><span class="na">getName</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvEmails</span><span class="o">,</span> <span class="n">contact</span><span class="o">.</span><span class="na">getEmails</span><span class="o">().</span><span class="na">toString</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvNumbers</span><span class="o">,</span> <span class="n">contact</span><span class="o">.</span><span class="na">getNumbers</span><span class="o">().</span><span class="na">toString</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">getView</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>And that's it!</p>
+
+<h1>Features</h1>
+
+<p>For now you can use:</p>
+
+<ul>
+<li>
+<code>setText()</code> Calls setText(String) on any TextView</li>
+<li>
+<code>setAlpha()</code> Calls setAlpha(float) on any View</li>
+</ul><h1>Impacts</h1>
+
+<p>You'll have a slight performance loss compared to the hard coded version. References to views in the <code>ViewHolder</code> are held in a <code>SparseArray</code> instead of being directly accessed as class fields.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">BaseAdapter Helper maintained by <a href="https://github.com/JoanZap">JoanZap</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
