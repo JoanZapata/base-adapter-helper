@@ -72,6 +72,7 @@ For now you can use:
 
 * ```setText()``` Calls setText(String) on any TextView
 * ```setAlpha()``` Calls setAlpha(float) on any View
+* ```setImageResource()``` Calls setImageResource(float) on any ImageView
 
 # Impacts
 

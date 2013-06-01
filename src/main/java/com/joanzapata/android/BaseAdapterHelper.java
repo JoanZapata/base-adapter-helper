@@ -7,23 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * 
  * Allows an abstraction of the ViewHolder pattern.<br>
  * <br>
- * 
+ * <p/>
  * <b>Usage</b>
- * 
+ * <p/>
  * <pre>
  * return BaseAdapterHelper.get(context, convertView, parent, R.layout.item).setText(R.id.tvName, contact.getName())
  *         .setText(R.id.tvEmails, contact.getEmails().toString())
  *         .setText(R.id.tvNumbers, contact.getNumbers().toString()).getView();
  * </pre>
- * 
  * @author jzapata
- * 
  */
 public class BaseAdapterHelper {
 
@@ -34,13 +32,9 @@ public class BaseAdapterHelper {
 
     /**
      * This method is the only entry point to get a BaseAdapterHelper.
-     * 
-     * @param context
-     *            The current context
-     * @param convertView
-     *            the convertView arg passed to the getView() method
-     * @param parent
-     *            the parent arg passed to the getView() method
+     * @param context     The current context
+     * @param convertView the convertView arg passed to the getView() method
+     * @param parent      the parent arg passed to the getView() method
      * @return A BaseAdapterHelper
      */
     public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent, int layoutId) {
@@ -68,6 +62,13 @@ public class BaseAdapterHelper {
         return this;
     }
 
+    /** Add an action to set the image of an image view. Can be called multiple times. */
+    public BaseAdapterHelper setImageResource(int viewId, int imageResId) {
+        ImageView view = retrieveView(viewId);
+        view.setImageResource(imageResId);
+        return this;
+    }
+
     /**
      * Add an action to set the alpha of a view. Can be called multiple times.
      * Alpha between 0-1.
@@ -77,10 +78,10 @@ public class BaseAdapterHelper {
             retrieveView(viewId).setAlpha(value);
         } else {
             // Pre-honeycomb hack to set Alpha value
-             AlphaAnimation alpha = new AlphaAnimation(value, value);
-             alpha.setDuration(0);
-             alpha.setFillAfter(true);
-             retrieveView(viewId).startAnimation(alpha);
+            AlphaAnimation alpha = new AlphaAnimation(value, value);
+            alpha.setDuration(0);
+            alpha.setFillAfter(true);
+            retrieveView(viewId).startAnimation(alpha);
         }
         return this;
     }
