@@ -1,6 +1,8 @@
 package com.joanzapata.android;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -66,6 +68,20 @@ public class BaseAdapterHelper {
     public BaseAdapterHelper setImageResource(int viewId, int imageResId) {
         ImageView view = retrieveView(viewId);
         view.setImageResource(imageResId);
+        return this;
+    }
+
+    /** Add an action to set the image of an image view. Can be called multiple times. */
+    public BaseAdapterHelper setImageDrawable(int viewId, Drawable drawable) {
+        ImageView view = retrieveView(viewId);
+        view.setImageDrawable(drawable);
+        return this;
+    }
+
+    /** Add an action to set the image of an image view. Can be called multiple times. */
+    public BaseAdapterHelper setImageBitmap(int viewId, Bitmap bitmap) {
+        ImageView view = retrieveView(viewId);
+        view.setImageBitmap(bitmap);
         return this;
     }
 
