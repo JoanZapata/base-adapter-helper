@@ -1,69 +1,86 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
 
-	<groupId>com.joanzapata.android</groupId>
-	<artifactId>base-adapter-helper</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
-	<name>base-adapter-helper</name>
-	<packaging>jar</packaging>
-	<description>Abstraction for the usual BaseAdapter "ViewHolder" pattern</description>
-	<url>http://base-adapter-helper.joanzapata.com</url>
+    <groupId>com.joanzapata.android</groupId>
+    <artifactId>base-adapter-helper</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+    <name>base-adapter-helper</name>
+    <packaging>jar</packaging>
+    <description>Abstraction for the usual BaseAdapter "ViewHolder" pattern</description>
+    <url>http://joanzapata.com/base-adapter-helper</url>
+    <inceptionYear>2013</inceptionYear>
 
-	<licenses>
-		<license>
-			<name>Apache 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>Apache 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
-	<scm>
-		<url>http://github.com/JoanZapata/base-adapter-helper/</url>
-		<connection>scm:git:git://github.com/JoanZapata/base-adapter-helper.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/JoanZapata/base-adapter-helper.git</developerConnection>
-		<tag>HEAD</tag>
-	</scm>
+    <scm>
+        <url>http://github.com/JoanZapata/base-adapter-helper/</url>
+        <connection>scm:git:git://github.com/JoanZapata/base-adapter-helper.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/JoanZapata/base-adapter-helper.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 
-	<developers>
-		<developer>
-			<name>Joan Zapata</name>
-			<email>zapata.joan@gmail.com</email>
-			<url>http://joanzapata.com</url>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>Joan Zapata</name>
+            <email>zapata.joan@gmail.com</email>
+            <url>http://joanzapata.com</url>
+        </developer>
+    </developers>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
-		<android.version>4.1.1.4</android.version>
-		<java.version>1.6</java.version>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+        <android.version>4.1.1.4</android.version>
+        <java.version>1.6</java.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.google.android</groupId>
-			<artifactId>android</artifactId>
-			<scope>provided</scope>
-			<version>${android.version}</version>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <scope>provided</scope>
+            <version>${android.version}</version>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.mycila.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <version>1.10.b1</version>
+                <configuration>
+                    <header>LICENSE.txt</header>
+                    <excludes>
+                        <exclude>.idea/**</exclude>
+                        <exclude>LICENSE.txt</exclude>
+                        <exclude>.gitignore</exclude>
+                        <exclude>README.md</exclude>
+                    </excludes>
+                    <strictCheck>true</strictCheck>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
