@@ -1,34 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <title>BaseAdapter Helper by JoanZapata</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <title>BaseAdapter Helper by JoanZapata</title>
   </head>
-
   <body>
-    <header>
-      <div class="inner">
+    <div class="wrapper">
+      <header>
         <h1>BaseAdapter Helper</h1>
-        <h2>Abstraction for the usual BaseAdapter &quot;ViewHolder&quot; pattern</h2>
-        <a href="https://github.com/JoanZapata/base-adapter-helper" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
-
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <blockquote>
+        <p>Abstraction for the usual BaseAdapter &quot;ViewHolder&quot; pattern</p>
+        <p class="view"><a href="https://github.com/JoanZapata/base-adapter-helper">View the Project on GitHub <small>JoanZapata/base-adapter-helper</small></a></p>
+        <ul>
+          <li><a href="https://github.com/JoanZapata/base-adapter-helper/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/JoanZapata/base-adapter-helper/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/JoanZapata/base-adapter-helper">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <blockquote>
 <p><strong>BaseAdapter Helper</strong> aims to make BaseAdapter's <code>getView()</code> method much more readable, because the implementation of the <a href="http://www.jmanzano.es/blog/?p=166">ViewHolder pattern</a> is a lot of boilerplate code.</p>
 </blockquote>
 
@@ -45,10 +44,8 @@
 </code></pre>
 
 <h1>
-<a name="use-it" class="anchor" href="#use-it"><span class="octicon octicon-link"></span></a>Use it</h1>
-
-<h3>
-<a name="in-your-baseadapter-subclass-instead-of-writting-the-usual" class="anchor" href="#in-your-baseadapter-subclass-instead-of-writting-the-usual"><span class="octicon octicon-link"></span></a>In your <code>BaseAdapter</code> subclass, instead of writting the usual:</h3>
+<a name="before" class="anchor" href="#before"><span class="octicon octicon-link"></span></a><a href="http://www.jmanzano.es/blog/?p=166">Before</a>
+</h1>
 
 <div class="highlight"><pre><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">v</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
@@ -86,12 +83,8 @@
 <span class="o">}</span>
 </pre></div>
 
-<blockquote>
-<p><a href="http://www.jmanzano.es/blog/?p=166">Source</a></p>
-</blockquote>
-
-<h3>
-<a name="you-can-now-write" class="anchor" href="#you-can-now-write"><span class="octicon octicon-link"></span></a>You can now write</h3>
+<h1>
+<a name="after" class="anchor" href="#after"><span class="octicon octicon-link"></span></a>After</h1>
 
 <div class="highlight"><pre><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
@@ -120,10 +113,7 @@
 <code>setImageDrawable()</code> Calls setImageDrawable(Drawable) on any ImageView</li>
 <li>
 <code>setImageBitmap()</code> Calls setImageBitmap(Bitmap) on any ImageView</li>
-</ul><h1>
-<a name="impacts" class="anchor" href="#impacts"><span class="octicon octicon-link"></span></a>Impacts</h1>
-
-<blockquote>
+</ul><blockquote>
 <p><strong>NOTE</strong> You may have a slight performance loss compared to the hard coded version. References to views in the <code>ViewHolder</code> are held in a <code>SparseArray</code> instead of being directly accessed as class fields.</p>
 </blockquote>
 
@@ -144,26 +134,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 </code></pre>
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/JoanZapata/base-adapter-helper/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/JoanZapata/base-adapter-helper/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/JoanZapata/base-adapter-helper"></a> is maintained by <a href="https://github.com/JoanZapata">JoanZapata</a>.</p>
-
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
+      </section>
     </div>
-
-            <script type="text/javascript">
+    <footer>
+      <p>Project maintained by <a href="https://github.com/JoanZapata">JoanZapata</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
