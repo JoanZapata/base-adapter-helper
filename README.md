@@ -12,9 +12,7 @@ BaseAdapter Helper is **available on Maven Central**.
 </dependency>
 ```
 
-# Use it
-
-### In your ```BaseAdapter``` subclass, instead of writting the usual:
+# [Before](http://www.jmanzano.es/blog/?p=166)
 
 ```java
 @Override
@@ -52,9 +50,8 @@ static class ContactsViewHolder {
     TextView txPhones;
 }
 ```
-> [Source](http://www.jmanzano.es/blog/?p=166)
 
-### You can now write
+# After
 
 ```java
 @Override
@@ -77,8 +74,6 @@ For now you can use:
 * ```setImageResource()``` Calls setImageResource(int) on any ImageView
 * ```setImageDrawable()``` Calls setImageDrawable(Drawable) on any ImageView
 * ```setImageBitmap()``` Calls setImageBitmap(Bitmap) on any ImageView
-
-# Impacts
 
 > **NOTE** You may have a slight performance loss compared to the hard coded version. References to views in the ```ViewHolder``` are held in a ```SparseArray``` instead of being directly accessed as class fields.
 
