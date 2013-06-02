@@ -1,10 +1,14 @@
+> **BaseAdapter Helper** aims to make BaseAdapter's ```getView()``` method much more readable, because the implementation of the [ViewHolder pattern](http://www.jmanzano.es/blog/?p=166) is a lot of boilerplate code.
+
 # Get it
+
+BaseAdapter Helper is **available on Maven Central**.
 
 ```
 <dependency>
   <groupId>com.joanzapata.android</groupId>
   <artifactId>base-adapter-helper</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
@@ -64,8 +68,6 @@ public View getView(int position, View convertView, ViewGroup parent) {
 }
 ```
 
-And that's it!
-
 # Features
 
 For now you can use:
@@ -78,4 +80,22 @@ For now you can use:
 
 # Impacts
 
-You'll have a slight performance loss compared to the hard coded version. References to views in the ```ViewHolder``` are held in a ```SparseArray``` instead of being directly accessed as class fields.
+> **NOTE** You may have a slight performance loss compared to the hard coded version. References to views in the ```ViewHolder``` are held in a ```SparseArray``` instead of being directly accessed as class fields.
+
+# Licence
+
+```
+Copyright 2013 Joan Zapata
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
