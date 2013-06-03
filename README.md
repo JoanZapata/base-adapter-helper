@@ -71,12 +71,26 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
 For now you can use:
 
-* ```setText()``` Calls ```setText(String)``` on any TextView
-* ```setAlpha()``` Calls ```setAlpha(float)``` on any View
-* ```setImageResource()``` Calls ```setImageResource(int)``` on any ImageView
-* ```setImageDrawable()``` Calls ```setImageDrawable(Drawable)``` on any ImageView
-* ```setImageBitmap()``` Calls ```setImageBitmap(Bitmap)``` on any ImageView
+* ```setText()``` Calls ```setText(String)``` on any TextView.
+* ```setAlpha()``` Calls ```setAlpha(float)``` on any View.
+* ```setImageResource()``` Calls ```setImageResource(int)``` on any ImageView.
+* ```setImageDrawable()``` Calls ```setImageDrawable(Drawable)``` on any ImageView.
+* ```setImageBitmap()``` Calls ```setImageBitmap(Bitmap)``` on any ImageView.
+* ```setImageUrl()``` Uses [Square's Picasso](http://square.github.io/picasso/) to download the image and put it in an ImageView.
+* ```setImageBuilder()``` Associates a [Square's Picasso](http://square.github.io/picasso/) RequestBuilder to an ImageView.
 * If you need something else, please [report an issue](https://github.com/JoanZapata/base-adapter-helper/issues).
+
+Complete sample:
+
+```java
+return BaseAdapterHelper.get(context, convertView, parent, R.layout.contact_row)
+        .setText(R.id.tvName, contact.getName())
+        .setAlpha(R.id.ivIcon, contact.isEnabled() ? 1f : 0f)
+        .setImageUrl(R.id.ivIcon, contact.getPictureUrl()) // or
+        .setImageBuilder(R.id.ivIcon, Picasso.with(context).load(model.getUrl()).resize(100, 100))
+        .getView();
+```
+
 
 > **NOTE** You may have a slight performance loss compared to the hard coded version. References to views in the ```ViewHolder``` are held in a ```SparseArray``` instead of being directly accessed as class fields.
 
@@ -96,4 +110,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+This project uses Picasso from Square, which is licensed under the same
+license as this project. You can find the project page at
+
+    http://square.github.io/picasso/
 ```

@@ -26,6 +26,8 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestBuilder;
 
 /**
  * Allows an abstraction of the ViewHolder pattern.<br>
@@ -34,25 +36,36 @@ import android.widget.TextView;
  * <b>Usage</b>
  * <p/>
  * <pre>
- * return BaseAdapterHelper.get(context, convertView, parent, R.layout.item).setText(R.id.tvName, contact.getName())
+ * return BaseAdapterHelper.get(context, convertView, parent, R.layout.item)
+ *         .setText(R.id.tvName, contact.getName())
  *         .setText(R.id.tvEmails, contact.getEmails().toString())
- *         .setText(R.id.tvNumbers, contact.getNumbers().toString()).getView();
+ *         .setText(R.id.tvNumbers, contact.getNumbers().toString())
+ *         .getView();
  * </pre>
- * @author jzapata
  */
 public class BaseAdapterHelper {
 
     /** Views indexed with their IDs */
     private final SparseArray<View> views;
 
+    private final Context context;
+
     private View convertView;
+
+    private BaseAdapterHelper(Context context, ViewGroup parent, int layoutId) {
+        this.context = context;
+        this.views = new SparseArray<View>();
+        convertView = LayoutInflater.from(context) //
+                .inflate(layoutId, parent, false);
+        convertView.setTag(this);
+    }
 
     /**
      * This method is the only entry point to get a BaseAdapterHelper.
-     * @param context     The current context
-     * @param convertView the convertView arg passed to the getView() method
-     * @param parent      the parent arg passed to the getView() method
-     * @return A BaseAdapterHelper
+     * @param context     The current context.
+     * @param convertView the convertView arg passed to the getView() method.
+     * @param parent      the parent arg passed to the getView() method.
+     * @return A BaseAdapterHelper instance.
      */
     public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent, int layoutId) {
         if (convertView == null) {
@@ -62,16 +75,11 @@ public class BaseAdapterHelper {
         }
     }
 
-    private BaseAdapterHelper(Context context, ViewGroup parent, int layoutId) {
-        this.views = new SparseArray<View>();
-        convertView = LayoutInflater.from(context) //
-                .inflate(layoutId, parent, false);
-        convertView.setTag(this);
-    }
-
     /**
-     * Add an action to set the text of a text view. Can be called multiple
-     * times.
+     * Will set the text of a TextView.
+     * @param viewId The view id.
+     * @param value  The text to put in the text view.
+     * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setText(int viewId, String value) {
         TextView view = retrieveView(viewId);
@@ -79,17 +87,54 @@ public class BaseAdapterHelper {
         return this;
     }
 
-    /** Add an action to set the image of an image view. Can be called multiple times. */
+    /**
+     * Will set the image of an ImageView from a resource id.
+     * @param viewId     The view id.
+     * @param imageResId The image resource id.
+     * @return The BaseAdapterHelper for chaining.
+     */
     public BaseAdapterHelper setImageResource(int viewId, int imageResId) {
         ImageView view = retrieveView(viewId);
         view.setImageResource(imageResId);
         return this;
     }
 
-    /** Add an action to set the image of an image view. Can be called multiple times. */
+    /**
+     * Will set the image of an ImageView from a drawable.
+     * @param viewId   The view id.
+     * @param drawable The image drawable.
+     * @return The BaseAdapterHelper for chaining.
+     */
     public BaseAdapterHelper setImageDrawable(int viewId, Drawable drawable) {
         ImageView view = retrieveView(viewId);
         view.setImageDrawable(drawable);
+        return this;
+    }
+
+    /**
+     * Will download an image from a URL and put it in an ImageView.<br/>
+     * It uses Square's Picasso library to download the image asynchronously and put the result into the ImageView.<br/>
+     * Picasso manages recycling of views in a ListView.<br/>
+     * If you need more control over the Picasso settings, use {BaseAdapterHelper#setImageBuilder}.
+     * @param viewId   The view id.
+     * @param imageUrl The image URL.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setImageUrl(int viewId, String imageUrl) {
+        ImageView view = retrieveView(viewId);
+        Picasso.with(context).load(imageUrl).into(view);
+        return this;
+    }
+
+    /**
+     * Will download an image from a URL and put it in an ImageView.<br/>
+     * @param viewId         The view id.
+     * @param requestBuilder The Picasso request builder. (e.g. Picasso.with(context).load(imageUrl))
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setImageBuilder(int viewId, RequestBuilder requestBuilder) {
+        ImageView view = retrieveView(viewId);
+        requestBuilder.into(view);
         return this;
     }
 

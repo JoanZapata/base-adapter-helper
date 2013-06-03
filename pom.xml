@@ -43,6 +43,7 @@
         <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
         <android.version>4.1.1.4</android.version>
         <java.version>1.6</java.version>
+        <picasso.version>1.0.2</picasso.version>
     </properties>
 
     <dependencies>
@@ -51,6 +52,11 @@
             <artifactId>android</artifactId>
             <scope>provided</scope>
             <version>${android.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.picasso</groupId>
+            <artifactId>picasso</artifactId>
+            <version>${picasso.version}</version>
         </dependency>
     </dependencies>
 
