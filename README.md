@@ -96,7 +96,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
 # Not covered features
 
-If you need a feature which is not yet covered by BaseAdapterHelper, there is workaround.
+If you need a feature which is not yet covered by BaseAdapterHelper, you can use ```getView(int)``` to retrieve any view in the layout.
 
 ```java
  @Override
