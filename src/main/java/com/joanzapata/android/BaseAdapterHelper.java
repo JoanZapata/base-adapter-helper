@@ -76,6 +76,17 @@ public class BaseAdapterHelper {
     }
 
     /**
+     * This method allows you to retrieve a view and perform custom
+     * operations on it, not covered by the BaseAdapterHelper.<br/>
+     * If you think it's a common use case, please consider creating
+     * a new issue at https://github.com/JoanZapata/base-adapter-helper/issues.
+     * @param viewId The id of the view you want to retrieve.
+     */
+    public <T extends View> T getView(int viewId) {
+        return retrieveView(viewId);
+    }
+
+    /**
      * Will set the text of a TextView.
      * @param viewId The view id.
      * @param value  The text to put in the text view.
