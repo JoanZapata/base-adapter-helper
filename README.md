@@ -76,6 +76,7 @@ For now you can use:
 * ```setImageResource()``` Calls ```setImageResource(int)``` on any ImageView
 * ```setImageDrawable()``` Calls ```setImageDrawable(Drawable)``` on any ImageView
 * ```setImageBitmap()``` Calls ```setImageBitmap(Bitmap)``` on any ImageView
+* If you need something else, please [report an issue](https://github.com/JoanZapata/base-adapter-helper/issues).
 
 > **NOTE** You may have a slight performance loss compared to the hard coded version. References to views in the ```ViewHolder``` are held in a ```SparseArray``` instead of being directly accessed as class fields.
 
