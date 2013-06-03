@@ -1,8 +1,8 @@
-> **BaseAdapter Helper** aims to make BaseAdapter's ```getView()``` method much more readable, because the implementation of the [ViewHolder pattern](http://www.jmanzano.es/blog/?p=166) is a lot of boilerplate code.
+> **BaseAdapter Helper** aims to make BaseAdapter's ```getView()``` method much more readable, getting rid of the [ViewHolder pattern](http://www.jmanzano.es/blog/?p=166) boilerplate code.
 
 # Get it
 
-BaseAdapter Helper is **available on Maven Central**.
+BaseAdapter Helper is now **available on Maven Central**.
 
 ```
 <dependency>
@@ -12,7 +12,7 @@ BaseAdapter Helper is **available on Maven Central**.
 </dependency>
 ```
 
-# [Before](http://www.jmanzano.es/blog/?p=166)
+# Before
 
 ```java
 @Override
@@ -51,6 +51,8 @@ static class ContactsViewHolder {
 }
 ```
 
+> [Source](http://www.jmanzano.es/blog/?p=166)
+
 # After
 
 ```java
@@ -69,11 +71,11 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
 For now you can use:
 
-* ```setText()``` Calls setText(String) on any TextView
-* ```setAlpha()``` Calls setAlpha(float) on any View
-* ```setImageResource()``` Calls setImageResource(int) on any ImageView
-* ```setImageDrawable()``` Calls setImageDrawable(Drawable) on any ImageView
-* ```setImageBitmap()``` Calls setImageBitmap(Bitmap) on any ImageView
+* ```setText()``` Calls ```setText(String)``` on any TextView
+* ```setAlpha()``` Calls ```setAlpha(float)``` on any View
+* ```setImageResource()``` Calls ```setImageResource(int)``` on any ImageView
+* ```setImageDrawable()``` Calls ```setImageDrawable(Drawable)``` on any ImageView
+* ```setImageBitmap()``` Calls ```setImageBitmap(Bitmap)``` on any ImageView
 
 > **NOTE** You may have a slight performance loss compared to the hard coded version. References to views in the ```ViewHolder``` are held in a ```SparseArray``` instead of being directly accessed as class fields.
 
