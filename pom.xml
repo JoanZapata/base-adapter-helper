@@ -9,7 +9,7 @@
 
     <groupId>com.joanzapata.android</groupId>
     <artifactId>base-adapter-helper</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
     <name>base-adapter-helper</name>
     <packaging>jar</packaging>
     <description>Abstraction for the usual BaseAdapter "ViewHolder" pattern</description>
