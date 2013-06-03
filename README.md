@@ -89,7 +89,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
             .setText(R.id.tvName, contact.getName())
             .setAlpha(R.id.ivIcon, contact.isEnabled() ? 1f : 0f)
             .setImageUrl(R.id.ivIcon, contact.getPictureUrl()) // or
-            .setImageBuilder(R.id.ivIcon, Picasso.with(context).load(model.getUrl()).resize(100, 100))
+            .setImageBuilder(R.id.ivIcon, Picasso.with(context).load(contact.getPictureUrl()).resize(100, 100))
             .getView();
 }
 ```
