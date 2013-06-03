@@ -113,9 +113,10 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
 Use it as the very last resort, and please create [an issue](https://github.com/JoanZapata/base-adapter-helper/issues).
 
-# Limitations
+# Performance
 
-There is a slight performance loss compared to the hard coded version, references to views in the ```ViewHolder``` are held in a ```SparseArray``` instead of being directly accessed as class fields.
+The performances using the BaseAdapter Helper are **equivalent** to the ones of the **ViewHolder pattern**.
+It has been tested on **thousands items list** of **complex item structure** with more than **30 views to be adapted** on each item, and the ```getView()``` method has shown ```similar execution times```.
 
 # Licence
 
