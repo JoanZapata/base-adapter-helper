@@ -8,7 +8,7 @@ BaseAdapter Helper is now **available on Maven Central**.
 <dependency>
   <groupId>com.joanzapata.android</groupId>
   <artifactId>base-adapter-helper</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
