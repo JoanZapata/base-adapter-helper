@@ -8,10 +8,10 @@
     </parent>
 
     <groupId>com.joanzapata.android</groupId>
-    <artifactId>base-adapter-helper</artifactId>
+    <artifactId>base-adapter-helper-parent</artifactId>
     <version>1.0.3-SNAPSHOT</version>
-    <name>base-adapter-helper</name>
-    <packaging>jar</packaging>
+    <name>base-adapter-helper-parent</name>
+    <packaging>pom</packaging>
     <description>Abstraction for the usual BaseAdapter "ViewHolder" pattern</description>
     <url>http://joanzapata.com/base-adapter-helper</url>
     <inceptionYear>2013</inceptionYear>
@@ -44,21 +44,10 @@
         <android.version>4.1.1.4</android.version>
         <java.version>1.6</java.version>
         <picasso.version>1.0.2</picasso.version>
+        <android-maven-plugin.version>3.5.0</android-maven-plugin.version>
+        <api.platform>16</api.platform>
+        <androidannotations.version>2.7</androidannotations.version>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.google.android</groupId>
-            <artifactId>android</artifactId>
-            <scope>provided</scope>
-            <version>${android.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.picasso</groupId>
-            <artifactId>picasso</artifactId>
-            <version>${picasso.version}</version>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>
@@ -70,7 +59,6 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
@@ -88,4 +76,10 @@
             </plugin>
         </plugins>
     </build>
+
+    <modules>
+	<module>base-adapter-helper</module>
+	<module>base-adapter-helper-sample</module>
+    </modules>
+
 </project>
