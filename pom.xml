@@ -47,6 +47,8 @@
         <android-maven-plugin.version>3.5.0</android-maven-plugin.version>
         <api.platform>16</api.platform>
         <androidannotations.version>2.7</androidannotations.version>
+        <maven-jarsigner.version>1.2</maven-jarsigner.version>
+        <password></password>
     </properties>
 
     <build>
