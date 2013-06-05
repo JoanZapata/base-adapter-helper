@@ -11,14 +11,25 @@
         android:layout_height="@dimen/avatarSize"
         android:layout_alignParentLeft="true" />
 
+    <ImageView
+        android:id="@+id/tweetRT"
+        android:layout_toLeftOf="@+id/tweetDate"
+        android:layout_alignBottom="@+id/tweetDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/retweet" />
+
     <TextView
         android:id="@+id/tweetName"
+        style="@style/tweetName"
+        android:layout_marginBottom="1dp"
         android:layout_toRightOf="@+id/tweetAvatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tweetText"
+        style="@style/tweetText"
         android:layout_toRightOf="@+id/tweetAvatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,10 +37,10 @@
 
     <TextView
         android:id="@+id/tweetDate"
-        android:layout_alignBottom="@+id/tweetName"
+        style="@style/tweetDate"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFAAAAAA" />
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

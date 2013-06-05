@@ -1,12 +1,10 @@
-package com.joanzapata.android.tweeter.component;
+package com.joanzapata.android.twitter.component;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.AbsListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import com.joanzapata.android.tweeter.TweeterActivity;
 
 /**
  * Add a method to the basic list view.<br/>

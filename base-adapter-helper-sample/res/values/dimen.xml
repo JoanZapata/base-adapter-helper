@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="avatarSize">50dp</dimen>
-    <dimen name="smallSpace">5dp</dimen>
+    <dimen name="smallSpace">6dp</dimen>
 </resources>

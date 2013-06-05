@@ -1,57 +1,58 @@
-package com.joanzapata.android.tweeter;
+package com.joanzapata.android.twitter;
 
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.util.Log;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.Window;
 import com.googlecode.androidannotations.annotations.*;
 import com.joanzapata.android.BaseAdapterHelper;
 import com.joanzapata.android.QuickAdapter;
-import com.joanzapata.android.tweeter.component.ExtendedListView;
+import com.joanzapata.android.twitter.component.ExtendedListView;
 import twitter4j.Status;
 
 import java.text.DateFormat;
 import java.util.List;
 
 import static com.actionbarsherlock.view.Window.FEATURE_INDETERMINATE_PROGRESS;
-import static com.joanzapata.android.tweeter.TwitterService.getTweetsBefore;
-import static java.text.DateFormat.SHORT;
-import static java.text.DateFormat.getDateInstance;
+import static com.joanzapata.android.twitter.R.id.*;
+import static java.text.DateFormat.*;
 
 @EActivity(R.layout.activity_main)
-public class TweeterActivity extends SherlockActivity implements ExtendedListView.OnEndOfListListener<Status> {
+public class TwitterActivity extends SherlockActivity implements ExtendedListView.OnEndOfListListener<Status> {
 
-    public static final String TAG = TweeterActivity.class.getSimpleName();
+    public static final String TAG = TwitterActivity.class.getSimpleName();
 
     private static final DateFormat dateFormat = getDateInstance(SHORT);
 
     @ViewById
     protected ExtendedListView listView;
 
+    @Bean
+    protected TwitterService twitter;
+
     @NonConfigurationInstance
     protected QuickAdapter adapter;
 
     private String followingAccount = "JoanZap";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(FEATURE_INDETERMINATE_PROGRESS);
-    }
-
     @AfterViews
     void afterViews() {
+        setTitle("@" + followingAccount);
         listView.setOnEndOfListListener(this);
         if (adapter == null)
             adapter = new QuickAdapter<Status>(this, R.layout.tweet) {
                 @Override
                 protected void convert(BaseAdapterHelper helper, Status status) {
-                    if (status.isRetweet()) status = status.getRetweetedStatus();
-                    helper.setText(R.id.tweetText, status.getText())
-                            .setText(R.id.tweetName, status.getUser().getName())
-                            .setText(R.id.tweetDate, dateFormat.format(status.getCreatedAt()))
-                            .setImageUrl(R.id.tweetAvatar, status.getUser().getProfileImageURL());
+                    boolean isRetweet = status.isRetweet();
+                    if (isRetweet) status = status.getRetweetedStatus();
+
+                    helper.setText(tweetText, status.getText())
+                            .setVisible(tweetRT, isRetweet)
+                            .setText(tweetName, status.getUser().getName())
+                            .setText(tweetDate, dateFormat.format(status.getCreatedAt()))
+                            .setImageUrl(tweetAvatar, status.getUser().getProfileImageURL())
+                            .linkify(tweetText);
                 }
             };
         listView.setAdapter(adapter);
@@ -61,7 +62,7 @@ public class TweeterActivity extends SherlockActivity implements ExtendedListVie
     @Background
     public void onEndOfList(Status status) {
         showProgressDialog(true);
-        installTweets(getTweetsBefore(followingAccount, status));
+        installTweets(twitter.getTweetsBefore(followingAccount, status));
     }
 
     @UiThread
@@ -82,12 +83,11 @@ public class TweeterActivity extends SherlockActivity implements ExtendedListVie
     @UiThread
     protected void showProgressDialog(boolean visibility) {
         adapter.showIndeterminateProgress(visibility);
-        getSherlock().setProgressBarIndeterminateVisibility(visibility);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        return true;
+//    }
 
 }
