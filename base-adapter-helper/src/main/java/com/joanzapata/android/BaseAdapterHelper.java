@@ -19,6 +19,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.util.Linkify;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -181,6 +182,17 @@ public class BaseAdapterHelper {
     public BaseAdapterHelper setVisible(int viewId, boolean visible) {
         ImageView view = retrieveView(viewId);
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
+        return this;
+    }
+
+    /**
+     * Add links into a TextView.
+     * @param viewId The id of the TextView to linkify.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper linkify(int viewId) {
+        TextView view = retrieveView(viewId);
+        Linkify.addLinks(view, Linkify.ALL);
         return this;
     }
 

@@ -74,6 +74,7 @@ For now you can use:
 * ```setText()``` Calls ```setText(String)``` on any TextView.
 * ```setAlpha()``` Calls ```setAlpha(float)``` on any View.
 * ```setVisible()``` Calls ```setVisibility(int)``` on any View.
+* ```linkify()``` Calls ```Linkify.addLinks(view, ALL)``` on any TextView.
 * ```setImageResource()``` Calls ```setImageResource(int)``` on any ImageView.
 * ```setImageDrawable()``` Calls ```setImageDrawable(Drawable)``` on any ImageView.
 * ```setImageBitmap()``` Calls ```setImageBitmap(Bitmap)``` on any ImageView.
