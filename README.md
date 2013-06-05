@@ -36,7 +36,7 @@ BaseAdapter Helper is now **available on Maven Central**.
 
 ![Overview](https://raw.github.com/JoanZapata/base-adapter-helper/master/progress_sample.png)
 
-* ```showIndeterminateProgress(boolean)``` Show/hide a indeterminate progress at the end of the list
+* ```showIndeterminateProgress(boolean)``` Shows/hides an indeterminate progress at the end of the list.
 
 # Performance
 
