@@ -172,6 +172,18 @@ public class BaseAdapterHelper {
         return this;
     }
 
+    /**
+     * Set a view visibility to VISIBLE (true) or GONE (false).
+     * @param viewId  The view id.
+     * @param visible True for VISIBLE, false for GONE.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setVisible(int viewId, boolean visible) {
+        ImageView view = retrieveView(viewId);
+        view.setVisibility(visible ? View.VISIBLE : View.GONE);
+        return this;
+    }
+
     /** Retrieve the convertView */
     public View getView() {
         return convertView;
