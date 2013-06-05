@@ -1,75 +1,25 @@
-> **BaseAdapter Helper** aims to make BaseAdapter's ```getView()``` method much more readable, getting rid of the [ViewHolder pattern](http://www.jmanzano.es/blog/?p=166) boilerplate code.
+![Overview](https://raw.github.com/JoanZapata/base-adapter-helper/master/header.png)
+
+
+> **BaseAdapterHelper** aims to make BaseAdapter's ```getView()``` method much more readable, getting rid of the [ViewHolder pattern](http://www.jmanzano.es/blog/?p=166) boilerplate code.
+
+> **QuickAdapter** allows you to shorten the code of most usual ```BaseAdapter```, taking care of implementing everything for you based on your data list. You only need to focus on the mapping between your view and your model.
 
 # Get it
 
 BaseAdapter Helper is now **available on Maven Central**.
 
-```
+```xml
 <dependency>
   <groupId>com.joanzapata.android</groupId>
   <artifactId>base-adapter-helper</artifactId>
-  <version>1.0.2</version>
+  <version>1.1.0</version>
 </dependency>
-```
-
-# Before
-
-```java
-@Override
-public View getView(int position, View v, ViewGroup parent) {
-    // Keeps reference to avoid future findViewById()
-    ContactsViewHolder viewHolder;
-
-    if (v == null) {
-        LayoutInflater li = (LayoutInflater) getContext().getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
-        v = li.inflate(R.layout.contact_row, parent, false);
-
-        viewHolder = new ContactsViewHolder();
-        viewHolder.txName = (TextView) v.findViewById(R.id.tvName);
-        viewHolder.txEmails = (TextView) v.findViewById(R.id.tvEmails);
-        viewHolder.txPhones = (TextView) v.findViewById(R.id.tvNumbers);
-
-        v.setTag(viewHolder);
-    } else {
-        viewHolder = (ContactsViewHolder) v.getTag();
-    }
-
-    Contact contact = contacts.get(position);
-    if (contact != null) {
-        viewHolder.txName.setText(contact.getName());
-        viewHolder.txEmails.setText(contact.getEmails().toString());
-        viewHolder.txPhones.setText(contact.getNumbers().toString());
-    }
-    return v;
-}
-
-static class ContactsViewHolder {
-    TextView txName;
-    TextView txEmails;
-    TextView txPhones;
-}
-```
-
-> [Source](http://www.jmanzano.es/blog/?p=166)
-
-# After
-
-```java
-@Override
-public View getView(int position, View convertView, ViewGroup parent) {
-    Contact contact = contacts.get(position);
-    return BaseAdapterHelper.get(context, convertView, parent, R.layout.contact_row)
-            .setText(R.id.tvName, contact.getName())
-            .setText(R.id.tvEmails, contact.getEmails().toString())
-            .setText(R.id.tvNumbers, contact.getNumbers().toString())
-            .getView();
-}
 ```
 
 # Features
 
-For now you can use:
+## BaseAdapterHelper
 
 * ```setText()``` Calls ```setText(String)``` on any TextView.
 * ```setAlpha()``` Calls ```setAlpha(float)``` on any View.
@@ -80,40 +30,13 @@ For now you can use:
 * ```setImageBitmap()``` Calls ```setImageBitmap(Bitmap)``` on any ImageView.
 * ```setImageUrl()``` Uses [Square's Picasso](http://square.github.io/picasso/) to download the image and put it in an ImageView.
 * ```setImageBuilder()``` Associates a [Square's Picasso](http://square.github.io/picasso/) RequestBuilder to an ImageView.
-* If you need something else, please [report an issue](https://github.com/JoanZapata/base-adapter-helper/issues). Any contribution is welcome!
+* If you need something else, please [report an issue](https://github.com/JoanZapata/base-adapter-helper/issues). Any contribution is welcome! In the meanwhile, you can still use ```getView(id)```on the adapter to do custom operations.
 
-Complete sample:
+## QuickAdapter
 
-```java
-@Override
-public View getView(int position, View convertView, ViewGroup parent) {
-    return BaseAdapterHelper.get(context, convertView, parent, R.layout.contact_row)
-            .setText(R.id.tvName, contact.getName())
-            .setAlpha(R.id.ivIcon, contact.isEnabled() ? 1f : 0f)
-            .setImageUrl(R.id.ivIcon, contact.getPictureUrl()) // or
-            .setImageBuilder(R.id.ivIcon, Picasso.with(context).load(contact.getPictureUrl()).resize(100, 100))
-            .getView();
-}
-```
+![Overview](https://raw.github.com/JoanZapata/base-adapter-helper/master/progress_sample.png)
 
-# Not covered features
-
-If you need a feature which is not yet covered by BaseAdapterHelper, you can use ```getView(int)``` to retrieve any view in the layout.
-
-```java
- @Override
-public View getView(int position, View convertView, ViewGroup parent) {
-    ImageListModel model = getItem(position);
-    BaseAdapterHelper helper = BaseAdapterHelper.get(context, convertView, parent, R.layout.list_item)
-            .set...
-            .set...;
-    TextView textView = helper.getView(R.id.listText);
-    textView.setText("Use this as a last resort");
-    return helper.getView();
-}
-```
-
-Use it as the very last resort, and please create [an issue](https://github.com/JoanZapata/base-adapter-helper/issues).
+* ```showIndeterminateProgress(boolean)``` Show/hide a indeterminate progress at the end of the list
 
 # Performance
 
@@ -141,4 +64,8 @@ This project uses Picasso from Square, which is licensed under the same
 license as this project. You can find the project page at
 
     http://square.github.io/picasso/
+    
+The sample application uses Twitter4j by Yusuke Yamamoto, 
+ActionBarSherlock by Jake Wharton, and AndroidAnnotations by Pierre-Yves Ricau, 
+all of them being licensed under the Apache license version 2.0.
 ```
