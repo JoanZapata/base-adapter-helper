@@ -41,7 +41,7 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
      * @param data        A new list is created out of this one to avoid mutable list
      */
     public QuickAdapter(Context context, int layoutResId, List<T> data) {
-        this.data = new ArrayList<T>(data);
+        this.data = data == null ? new ArrayList<T>() : new ArrayList<T>(data);
         this.context = context;
         this.layoutResId = layoutResId;
     }

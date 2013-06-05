@@ -5,3 +5,5 @@ target/
 .idea
 *.iml
 gen/
+gen-external-apklibs/
+out/

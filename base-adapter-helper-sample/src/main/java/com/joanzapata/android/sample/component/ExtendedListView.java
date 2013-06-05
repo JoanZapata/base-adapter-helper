@@ -1,4 +1,4 @@
-package com.joanzapata.android.sample.util;
+package com.joanzapata.android.sample.component;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.AbsListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import com.joanzapata.android.sample.QuickAdapterActivity;
+import com.joanzapata.android.sample.TweeterActivity;
 
 /**
  * Add a method to the basic list view.<br/>
@@ -54,7 +54,7 @@ public class ExtendedListView extends ListView {
     @Override
     protected void handleDataChanged() {
         super.handleDataChanged();
-        Log.i(QuickAdapterActivity.TAG, "Dataset has changed");
+        Log.i(TweeterActivity.TAG, "Dataset has changed");
         hasWarned = false;
     }
 

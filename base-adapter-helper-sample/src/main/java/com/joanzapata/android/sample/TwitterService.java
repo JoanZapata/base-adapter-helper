@@ -13,18 +13,13 @@ public class TwitterService {
 
     private static final String TAG = TwitterService.class.getSimpleName();
 
-    public static List<Status> getLastTweets(String name) {
+    public static List<Status> getTweetsBefore(String username, Status beforeTweet) {
         try {
-            return twitter.getUserTimeline(name, new Paging().count(30));
-        } catch (TwitterException e) {
-            Log.e(TAG, "", e);
-            return null;
-        }
-    }
-
-    public static List<Status> getTweetsBefore(String name, long lastId) {
-        try {
-            return twitter.getUserTimeline(name, new Paging().count(30).maxId(lastId - 1));
+            final Paging paging = new Paging().count(30);
+            if (beforeTweet != null) {
+                paging.maxId(beforeTweet.getId() - 1);
+            }
+            return twitter.getUserTimeline(username, paging);
         } catch (TwitterException e) {
             Log.e(TAG, "", e);
             return null;

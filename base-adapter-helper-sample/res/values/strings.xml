@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AndroidPlayground</string>
+    <string name="app_name">BaseAdapterHelper Sample</string>
+    <string name="dialog_wait_title">Loading</string>
 </resources>
