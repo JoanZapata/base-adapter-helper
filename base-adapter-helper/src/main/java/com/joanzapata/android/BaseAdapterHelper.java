@@ -70,9 +70,8 @@ public class BaseAdapterHelper {
     public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent, int layoutId) {
         if (convertView == null) {
             return new BaseAdapterHelper(context, parent, layoutId);
-        } else {
-            return (BaseAdapterHelper) convertView.getTag();
         }
+        return (BaseAdapterHelper) convertView.getTag();
     }
 
     /**

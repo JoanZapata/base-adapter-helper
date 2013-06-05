@@ -1,9 +1,13 @@
 package com.joanzapata.android;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +22,15 @@ import static com.joanzapata.android.BaseAdapterHelper.get;
  */
 public abstract class QuickAdapter<T> extends BaseAdapter {
 
+    private static final String TAG = QuickAdapter.class.getSimpleName();
+
     private final Context context;
 
     private final int layoutResId;
 
     private final List<T> data;
+
+    private boolean displayIndeterminateProgress = false;
 
     /**
      * Create a QuickAdapter.
@@ -48,11 +56,13 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return data.size();
+        int extra = displayIndeterminateProgress ? 1 : 0;
+        return data.size() + extra;
     }
 
     @Override
     public T getItem(int position) {
+        if (position >= data.size()) return null;
         return data.get(position);
     }
 
@@ -62,10 +72,40 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
     }
 
     @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position >= data.size() ? 1 : 0;
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final BaseAdapterHelper helper = get(context, convertView, parent, layoutResId);
-        convert(helper, getItem(position));
-        return helper.getView();
+        if (getItemViewType(position) == 0) {
+            final BaseAdapterHelper helper = get(context, convertView, parent, layoutResId);
+            convert(helper, getItem(position));
+            return helper.getView();
+        }
+
+        return createIndeterminateProgressView(convertView, parent);
+    }
+
+    private View createIndeterminateProgressView(View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            FrameLayout container = new FrameLayout(context);
+            container.setForegroundGravity(Gravity.CENTER);
+            ProgressBar progress = new ProgressBar(context);
+            container.addView(progress);
+            convertView = container;
+        }
+        return convertView;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return position < data.size();
     }
 
     public void add(T elem) {
@@ -75,6 +115,12 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
 
     public void addAll(List<T> elem) {
         data.addAll(elem);
+        notifyDataSetChanged();
+    }
+
+    public void showIndeterminateProgress(boolean display) {
+        if (display == displayIndeterminateProgress) return;
+        displayIndeterminateProgress = display;
         notifyDataSetChanged();
     }
 

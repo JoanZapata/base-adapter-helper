@@ -1,4 +1,4 @@
-package com.joanzapata.android.sample.component;
+package com.joanzapata.android.tweeter.component;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.AbsListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import com.joanzapata.android.sample.TweeterActivity;
+import com.joanzapata.android.tweeter.TweeterActivity;
 
 /**
  * Add a method to the basic list view.<br/>
@@ -41,12 +41,15 @@ public class ExtendedListView extends ListView {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (!hasWarned
-                        && view.getLastVisiblePosition() == totalItemCount - 1
-                        && onEndOfListListener != null) {
-                    hasWarned = true;
-                    onEndOfListListener.onEndOfList(view.getItemAtPosition(totalItemCount - 1));
-                }
+                if (hasWarned
+                        || view.getLastVisiblePosition() != totalItemCount - 1
+                        || onEndOfListListener == null)
+                    return;
+
+                hasWarned = true;
+                Object lastItem = view.getItemAtPosition(totalItemCount - 1);
+                if (lastItem != null || totalItemCount == 0)
+                    onEndOfListListener.onEndOfList(lastItem);
             }
         });
     }
@@ -54,7 +57,6 @@ public class ExtendedListView extends ListView {
     @Override
     protected void handleDataChanged() {
         super.handleDataChanged();
-        Log.i(TweeterActivity.TAG, "Dataset has changed");
         hasWarned = false;
     }
 
