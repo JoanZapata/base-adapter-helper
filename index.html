@@ -28,8 +28,12 @@
         </ul>
       </header>
       <section>
-        <blockquote>
-<p><strong>BaseAdapter Helper</strong> aims to make BaseAdapter's <code>getView()</code> method much more readable, getting rid of the <a href="http://www.jmanzano.es/blog/?p=166">ViewHolder pattern</a> boilerplate code.</p>
+        <p><a href="https://github.com/JoanZapata/base-adapter-helper/blob/5465bea778f098a059390c441416c501e599cc10/base-adapter-helper-sample/src/main/java/com/joanzapata/android/twitter/TwitterActivity.java#L44-L57"><img src="https://raw.github.com/JoanZapata/base-adapter-helper/master/header.png" alt="Overview"></a></p>
+
+<blockquote>
+<p><strong>BaseAdapterHelper</strong> aims to make BaseAdapter's <code>getView()</code> method much more readable, getting rid of the <a href="http://www.jmanzano.es/blog/?p=166">ViewHolder pattern</a> boilerplate code.</p>
+
+<p><strong>QuickAdapter</strong> allows you to shorten the code of most usual <code>BaseAdapter</code>, taking care of implementing everything for you based on your data list. You only need to focus on the mapping between your view and your model.</p>
 </blockquote>
 
 <h1>
@@ -37,80 +41,28 @@
 
 <p>BaseAdapter Helper is now <strong>available on Maven Central</strong>.</p>
 
-<pre><code>&lt;dependency&gt;
-  &lt;groupId&gt;com.joanzapata.android&lt;/groupId&gt;
-  &lt;artifactId&gt;base-adapter-helper&lt;/artifactId&gt;
-  &lt;version&gt;1.0.2&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-
-<h1>
-<a name="before" class="anchor" href="#before"><span class="octicon octicon-link"></span></a>Before</h1>
-
-<div class="highlight"><pre><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">v</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// Keeps reference to avoid future findViewById()</span>
-    <span class="n">ContactsViewHolder</span> <span class="n">viewHolder</span><span class="o">;</span>
-
-    <span class="k">if</span> <span class="o">(</span><span class="n">v</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">LayoutInflater</span> <span class="n">li</span> <span class="o">=</span> <span class="o">(</span><span class="n">LayoutInflater</span><span class="o">)</span> <span class="n">getContext</span><span class="o">().</span><span class="na">getSystemService</span><span class="o">(</span>
-                <span class="n">Context</span><span class="o">.</span><span class="na">LAYOUT_INFLATER_SERVICE</span><span class="o">);</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">contact_row</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-
-        <span class="n">viewHolder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ContactsViewHolder</span><span class="o">();</span>
-        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txName</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="n">v</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvName</span><span class="o">);</span>
-        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txEmails</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="n">v</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvEmails</span><span class="o">);</span>
-        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txPhones</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span> <span class="n">v</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvNumbers</span><span class="o">);</span>
-
-        <span class="n">v</span><span class="o">.</span><span class="na">setTag</span><span class="o">(</span><span class="n">viewHolder</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">viewHolder</span> <span class="o">=</span> <span class="o">(</span><span class="n">ContactsViewHolder</span><span class="o">)</span> <span class="n">v</span><span class="o">.</span><span class="na">getTag</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="n">Contact</span> <span class="n">contact</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">contact</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txName</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">contact</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
-        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txEmails</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">contact</span><span class="o">.</span><span class="na">getEmails</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
-        <span class="n">viewHolder</span><span class="o">.</span><span class="na">txPhones</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">contact</span><span class="o">.</span><span class="na">getNumbers</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">v</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="kd">static</span> <span class="kd">class</span> <span class="nc">ContactsViewHolder</span> <span class="o">{</span>
-    <span class="n">TextView</span> <span class="n">txName</span><span class="o">;</span>
-    <span class="n">TextView</span> <span class="n">txEmails</span><span class="o">;</span>
-    <span class="n">TextView</span> <span class="n">txPhones</span><span class="o">;</span>
-<span class="o">}</span>
-</pre></div>
-
-<blockquote>
-<p><a href="http://www.jmanzano.es/blog/?p=166">Source</a></p>
-</blockquote>
-
-<h1>
-<a name="after" class="anchor" href="#after"><span class="octicon octicon-link"></span></a>After</h1>
-
-<div class="highlight"><pre><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">Contact</span> <span class="n">contact</span> <span class="o">=</span> <span class="n">contacts</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">BaseAdapterHelper</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">contact_row</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvName</span><span class="o">,</span> <span class="n">contact</span><span class="o">.</span><span class="na">getName</span><span class="o">())</span>
-            <span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvEmails</span><span class="o">,</span> <span class="n">contact</span><span class="o">.</span><span class="na">getEmails</span><span class="o">().</span><span class="na">toString</span><span class="o">())</span>
-            <span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvNumbers</span><span class="o">,</span> <span class="n">contact</span><span class="o">.</span><span class="na">getNumbers</span><span class="o">().</span><span class="na">toString</span><span class="o">())</span>
-            <span class="o">.</span><span class="na">getView</span><span class="o">();</span>
-<span class="o">}</span>
+<div class="highlight"><pre><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.joanzapata.android<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>base-adapter-helper<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 
 <h1>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h1>
 
-<p>For now you can use:</p>
+<h2>
+<a name="baseadapterhelper" class="anchor" href="#baseadapterhelper"><span class="octicon octicon-link"></span></a>BaseAdapterHelper</h2>
 
 <ul>
 <li>
 <code>setText()</code> Calls <code>setText(String)</code> on any TextView.</li>
 <li>
 <code>setAlpha()</code> Calls <code>setAlpha(float)</code> on any View.</li>
+<li>
+<code>setVisible()</code> Calls <code>setVisibility(int)</code> on any View.</li>
+<li>
+<code>linkify()</code> Calls <code>Linkify.addLinks(view, ALL)</code> on any TextView.</li>
 <li>
 <code>setImageResource()</code> Calls <code>setImageResource(int)</code> on any ImageView.</li>
 <li>
@@ -121,40 +73,16 @@
 <code>setImageUrl()</code> Uses <a href="http://square.github.io/picasso/">Square's Picasso</a> to download the image and put it in an ImageView.</li>
 <li>
 <code>setImageBuilder()</code> Associates a <a href="http://square.github.io/picasso/">Square's Picasso</a> RequestBuilder to an ImageView.</li>
-<li>If you need something else, please <a href="https://github.com/JoanZapata/base-adapter-helper/issues">report an issue</a>. Any contribution is welcome!</li>
-</ul><p>Complete sample:</p>
+<li>If you need something else, please <a href="https://github.com/JoanZapata/base-adapter-helper/issues">report an issue</a>. Any contribution is welcome! In the meanwhile, you can still use <code>getView(id)</code>on the adapter to do custom operations.</li>
+</ul><h2>
+<a name="quickadapter" class="anchor" href="#quickadapter"><span class="octicon octicon-link"></span></a>QuickAdapter</h2>
 
-<div class="highlight"><pre><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">BaseAdapterHelper</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">contact_row</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">tvName</span><span class="o">,</span> <span class="n">contact</span><span class="o">.</span><span class="na">getName</span><span class="o">())</span>
-            <span class="o">.</span><span class="na">setAlpha</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">ivIcon</span><span class="o">,</span> <span class="n">contact</span><span class="o">.</span><span class="na">isEnabled</span><span class="o">()</span> <span class="o">?</span> <span class="mi">1</span><span class="n">f</span> <span class="o">:</span> <span class="mi">0</span><span class="n">f</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">setImageUrl</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">ivIcon</span><span class="o">,</span> <span class="n">contact</span><span class="o">.</span><span class="na">getPictureUrl</span><span class="o">())</span> <span class="c1">// or</span>
-            <span class="o">.</span><span class="na">setImageBuilder</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">ivIcon</span><span class="o">,</span> <span class="n">Picasso</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">context</span><span class="o">).</span><span class="na">load</span><span class="o">(</span><span class="n">contact</span><span class="o">.</span><span class="na">getPictureUrl</span><span class="o">()).</span><span class="na">resize</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span> <span class="mi">100</span><span class="o">))</span>
-            <span class="o">.</span><span class="na">getView</span><span class="o">();</span>
-<span class="o">}</span>
-</pre></div>
+<p><a href="https://github.com/JoanZapata/base-adapter-helper/blob/5465bea778f098a059390c441416c501e599cc10/base-adapter-helper-sample/src/main/java/com/joanzapata/android/twitter/TwitterActivity.java#L85"><img src="https://raw.github.com/JoanZapata/base-adapter-helper/master/progress_sample.png" alt="Overview"></a></p>
 
-<h1>
-<a name="not-covered-features" class="anchor" href="#not-covered-features"><span class="octicon octicon-link"></span></a>Not covered features</h1>
-
-<p>If you need a feature which is not yet covered by BaseAdapterHelper, you can use <code>getView(int)</code> to retrieve any view in the layout.</p>
-
-<div class="highlight"><pre> <span class="nd">@Override</span>
-<span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">ImageListModel</span> <span class="n">model</span> <span class="o">=</span> <span class="n">getItem</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
-    <span class="n">BaseAdapterHelper</span> <span class="n">helper</span> <span class="o">=</span> <span class="n">BaseAdapterHelper</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">list_item</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">set</span><span class="o">...</span>
-            <span class="o">.</span><span class="na">set</span><span class="o">...;</span>
-    <span class="n">TextView</span> <span class="n">textView</span> <span class="o">=</span> <span class="n">helper</span><span class="o">.</span><span class="na">getView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">listText</span><span class="o">);</span>
-    <span class="n">textView</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"Use this as a last resort"</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">helper</span><span class="o">.</span><span class="na">getView</span><span class="o">();</span>
-<span class="o">}</span>
-</pre></div>
-
-<p>Use it as the very last resort, and please create <a href="https://github.com/JoanZapata/base-adapter-helper/issues">an issue</a>.</p>
-
-<h1>
+<ul>
+<li>
+<code>showIndeterminateProgress(boolean)</code> Shows/hides an indeterminate progress at the end of the list.</li>
+</ul><h1>
 <a name="performance" class="anchor" href="#performance"><span class="octicon octicon-link"></span></a>Performance</h1>
 
 <p>The performances using the BaseAdapter Helper are <strong>equivalent</strong> to the ones of the <strong>ViewHolder pattern</strong>.
@@ -181,6 +109,10 @@ This project uses Picasso from Square, which is licensed under the same
 license as this project. You can find the project page at
 
     http://square.github.io/picasso/
+
+The sample application uses Twitter4j by Yusuke Yamamoto, 
+ActionBarSherlock by Jake Wharton, and AndroidAnnotations by Pierre-Yves Ricau, 
+all of them being licensed under the Apache license version 2.0.
 </code></pre>
       </section>
       <footer>
