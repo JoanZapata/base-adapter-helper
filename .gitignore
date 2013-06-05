@@ -7,3 +7,4 @@ target/
 gen/
 gen-external-apklibs/
 out/
+twitter4j.properties
