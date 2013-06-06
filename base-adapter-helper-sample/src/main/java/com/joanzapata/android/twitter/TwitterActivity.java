@@ -20,6 +20,8 @@ import android.text.util.Linkify;
 import android.util.Log;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.SearchView;
 import com.googlecode.androidannotations.annotations.*;
 import com.joanzapata.android.BaseAdapterHelper;
 import com.joanzapata.android.QuickAdapter;
@@ -34,6 +36,7 @@ import static com.joanzapata.android.twitter.R.id.*;
 import static java.text.DateFormat.*;
 
 @EActivity(R.layout.activity_main)
+@OptionsMenu(R.menu.actionbar)
 public class TwitterActivity extends SherlockActivity implements ExtendedListView.OnEndOfListListener<Status> {
 
     public static final String TAG = TwitterActivity.class.getSimpleName();
@@ -100,9 +103,29 @@ public class TwitterActivity extends SherlockActivity implements ExtendedListVie
         adapter.showIndeterminateProgress(visibility);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        return true;
-//    }
+    @OptionsItem(R.id.search)
+    protected void onSearch(final MenuItem item) {
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setQueryHint(followingAccount);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                item.collapseActionView();
+                onSearchSubmit(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return true;
+            }
+        });
+    }
+
+    private void onSearchSubmit(String query) {
+        followingAccount = query;
+        afterViews();
+        adapter.clear();
+    }
 
 }

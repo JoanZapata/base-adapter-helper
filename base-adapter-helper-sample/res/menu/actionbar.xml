@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/search"
+        android:title="Search"
+        android:actionViewClass="com.actionbarsherlock.widget.SearchView"
+        android:icon="@drawable/ic_action_search"
+        android:showAsAction="ifRoom|collapseActionView"/>
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_about"
+        android:showAsAction="ifRoom" />
+
+</menu>

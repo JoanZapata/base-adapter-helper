@@ -133,6 +133,12 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    /** Clear data list */
+    public void clear() {
+        data.clear();
+        notifyDataSetChanged();
+    }
+
     public void showIndeterminateProgress(boolean display) {
         if (display == displayIndeterminateProgress) return;
         displayIndeterminateProgress = display;
@@ -145,4 +151,5 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
      * @param item   The item that needs to be displayed.
      */
     protected abstract void convert(BaseAdapterHelper helper, T item);
+
 }
