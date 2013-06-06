@@ -52,6 +52,7 @@ public class TwitterActivity extends SherlockActivity implements ExtendedListVie
     @NonConfigurationInstance
     protected QuickAdapter adapter;
 
+    @NonConfigurationInstance
     private String followingAccount = "JoanZap";
 
     @AfterViews
