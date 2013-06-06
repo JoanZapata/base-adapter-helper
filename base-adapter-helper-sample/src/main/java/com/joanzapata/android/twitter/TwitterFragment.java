@@ -15,31 +15,26 @@
  */
 package com.joanzapata.android.twitter;
 
-import android.os.Bundle;
-import android.text.util.Linkify;
-import android.util.Log;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
 import com.googlecode.androidannotations.annotations.*;
 import com.joanzapata.android.BaseAdapterHelper;
 import com.joanzapata.android.QuickAdapter;
 import com.joanzapata.android.twitter.component.ExtendedListView;
+import com.joanzapata.android.twitter.service.TwitterService;
 import twitter4j.Status;
 
 import java.text.DateFormat;
 import java.util.List;
 
-import static com.actionbarsherlock.view.Window.FEATURE_INDETERMINATE_PROGRESS;
 import static com.joanzapata.android.twitter.R.id.*;
 import static java.text.DateFormat.*;
 
-@EActivity(R.layout.activity_main)
-@OptionsMenu(R.menu.actionbar)
-public class TwitterActivity extends SherlockActivity implements ExtendedListView.OnEndOfListListener<Status> {
+@EFragment(R.layout.activity_main)
+public class TwitterFragment extends SherlockFragment implements ExtendedListView.OnEndOfListListener<Status> {
 
-    public static final String TAG = TwitterActivity.class.getSimpleName();
+    public static final String TAG = TwitterFragment.class.getSimpleName();
 
     private static final DateFormat dateFormat = getDateInstance(SHORT);
 
@@ -49,18 +44,18 @@ public class TwitterActivity extends SherlockActivity implements ExtendedListVie
     @Bean
     protected TwitterService twitter;
 
-    @NonConfigurationInstance
+//    @NonConfigurationInstance
     protected QuickAdapter adapter;
 
-    @NonConfigurationInstance
+//    @NonConfigurationInstance
     protected String followingAccount = "JoanZap";
 
     @AfterViews
     void afterViews() {
-        setTitle("@" + followingAccount);
+        getSherlockActivity().setTitle("@" + followingAccount);
         listView.setOnEndOfListListener(this);
         if (adapter == null)
-            adapter = new QuickAdapter<Status>(this, R.layout.tweet) {
+            adapter = new QuickAdapter<Status>(getSherlockActivity(), R.layout.tweet) {
                 @Override
                 protected void convert(BaseAdapterHelper helper, Status status) {
                     boolean isRetweet = status.isRetweet();
