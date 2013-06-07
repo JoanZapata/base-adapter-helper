@@ -15,15 +15,16 @@
     limitations under the License.
 
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/smallSpace">
 
     <TextView
-        android:text="Hello"
-        android:gravity="center"
+        style="@style/About"
+        android:id="@+id/htmlAbout"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
-</LinearLayout>
+</ScrollView>

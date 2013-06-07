@@ -34,15 +34,12 @@ public class ViewPagerActivity extends SherlockFragmentActivity {
 
     static class ViewPagerAdapter extends FragmentPagerAdapter {
 
-        private final FragmentActivity context;
-
         @SuppressWarnings("unchecked")
         private Class<? extends Fragment>[] pages = new Class[]
                 {TwitterFragment_.class, AboutFragment_.class};
 
         public ViewPagerAdapter(FragmentActivity context) {
             super(context.getSupportFragmentManager());
-            this.context = context;
         }
 
         @Override
@@ -59,6 +56,5 @@ public class ViewPagerActivity extends SherlockFragmentActivity {
                 return null;
             }
         }
-
     }
 }

@@ -34,8 +34,6 @@ import static java.text.DateFormat.*;
 @EFragment(R.layout.activity_main)
 public class TwitterFragment extends SherlockFragment implements ExtendedListView.OnEndOfListListener<Status> {
 
-    public static final String TAG = TwitterFragment.class.getSimpleName();
-
     private static final DateFormat dateFormat = getDateInstance(SHORT);
 
     @ViewById
@@ -44,14 +42,13 @@ public class TwitterFragment extends SherlockFragment implements ExtendedListVie
     @Bean
     protected TwitterService twitter;
 
-//    @NonConfigurationInstance
-    protected QuickAdapter adapter;
+    protected QuickAdapter<Status> adapter;
 
-//    @NonConfigurationInstance
     protected String followingAccount = "JoanZap";
 
     @AfterViews
     void afterViews() {
+        setRetainInstance(true);
         getSherlockActivity().setTitle("@" + followingAccount);
         listView.setOnEndOfListListener(this);
         if (adapter == null)
@@ -60,7 +57,6 @@ public class TwitterFragment extends SherlockFragment implements ExtendedListVie
                 protected void convert(BaseAdapterHelper helper, Status status) {
                     boolean isRetweet = status.isRetweet();
                     if (isRetweet) status = status.getRetweetedStatus();
-
                     helper.setText(tweetText, status.getText())
                             .setVisible(tweetRT, isRetweet)
                             .setText(tweetName, status.getUser().getName())
@@ -123,5 +119,4 @@ public class TwitterFragment extends SherlockFragment implements ExtendedListVie
         afterViews();
         adapter.clear();
     }
-
 }

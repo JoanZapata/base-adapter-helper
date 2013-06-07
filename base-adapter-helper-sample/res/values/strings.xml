@@ -18,4 +18,15 @@
 <resources>
     <string name="app_name">BaseAdapterHelper Sample</string>
     <string name="dialog_wait_title">Loading</string>
+    <string name="html_about"><![CDATA[
+        <h1>BaseAdapterHelper demo<h1>
+        <p><b>BaseAdapterHelper</b> is an open source library which aims to make your life easier when it comes to <b>ListView</b>s and <b>Adapter</b>s.</p>
+        <p>
+            <a href="http://joanzapata.com/base-adapter-helper/">Website</a> |
+            <a href="https://github.com/JoanZapata/base-adapter-helper">Github</a> |
+            <a href="http://joanzapata.com">Joan Zapata</a>
+        </p>
+        <br/>
+        <p>The project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License v2.0</a>.</p>
+        ]]></string>
 </resources>
