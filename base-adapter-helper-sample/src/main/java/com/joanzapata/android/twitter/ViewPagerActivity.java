@@ -27,11 +27,6 @@ public class ViewPagerActivity extends SherlockFragmentActivity {
         viewPager.setCurrentItem(1);
     }
 
-    @OptionsItem(R.id.search)
-    protected void onSearch() {
-        viewPager.setCurrentItem(0);
-    }
-
     static class ViewPagerAdapter extends FragmentPagerAdapter {
 
         @SuppressWarnings("unchecked")

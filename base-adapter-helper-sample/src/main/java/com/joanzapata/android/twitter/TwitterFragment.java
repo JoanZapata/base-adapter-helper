@@ -15,7 +15,11 @@
  */
 package com.joanzapata.android.twitter;
 
+import android.os.Build;
+import android.util.Log;
+import android.view.View;
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.internal.view.menu.ActionMenuItemView;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
 import com.googlecode.androidannotations.annotations.*;
@@ -31,6 +35,7 @@ import java.util.List;
 import static com.joanzapata.android.twitter.R.id.*;
 import static java.text.DateFormat.*;
 
+@OptionsMenu(R.menu.actionbar_search)
 @EFragment(R.layout.activity_main)
 public class TwitterFragment extends SherlockFragment implements ExtendedListView.OnEndOfListListener<Status> {
 
@@ -45,6 +50,8 @@ public class TwitterFragment extends SherlockFragment implements ExtendedListVie
     protected QuickAdapter<Status> adapter;
 
     protected String followingAccount = "JoanZap";
+
+    private MenuItem searchMenuItem;
 
     @AfterViews
     void afterViews() {
@@ -71,7 +78,7 @@ public class TwitterFragment extends SherlockFragment implements ExtendedListVie
     @Override
     @Background
     public void onEndOfList(Status status) {
-        showProgressDialog(true);
+        showIndeterminateProgress(true);
         installTweets(twitter.getTweetsBefore(followingAccount, status));
     }
 
@@ -86,17 +93,32 @@ public class TwitterFragment extends SherlockFragment implements ExtendedListVie
         if (tweets.isEmpty()) {
             listView.setOnEndOfListListener(null);
         }
-        showProgressDialog(false);
+        showIndeterminateProgress(false);
         adapter.addAll(tweets);
     }
 
     @UiThread
-    protected void showProgressDialog(boolean visibility) {
+    protected void showIndeterminateProgress(boolean visibility) {
         adapter.showIndeterminateProgress(visibility);
+        final View refreshMenuItem = getSherlockActivity().findViewById(R.id.refresh);
+        final View searchMenuItem = getSherlockActivity().findViewById(R.id.search);
+        searchMenuItem.setEnabled(!visibility);
+        refreshMenuItem.setEnabled(!visibility);
+        if (Build.VERSION.SDK_INT >= 11) {
+            float alpha = visibility ? 0.4f : 1f;
+            searchMenuItem.setAlpha(alpha);
+            refreshMenuItem.setAlpha(alpha);
+        }
+    }
+
+    @OptionsItem(R.id.refresh)
+    protected void onRefresh(final MenuItem item) {
+        onSearchSubmit(followingAccount);
     }
 
     @OptionsItem(R.id.search)
     protected void onSearch(final MenuItem item) {
+        this.searchMenuItem = item;
         SearchView searchView = (SearchView) item.getActionView();
         searchView.setQueryHint(followingAccount);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -112,6 +134,11 @@ public class TwitterFragment extends SherlockFragment implements ExtendedListVie
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     private void onSearchSubmit(String query) {
