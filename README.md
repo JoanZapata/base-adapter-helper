@@ -1,13 +1,13 @@
 [![Overview](https://raw.github.com/JoanZapata/base-adapter-helper/master/header.png)](https://github.com/JoanZapata/base-adapter-helper/blob/5465bea778f098a059390c441416c501e599cc10/base-adapter-helper-sample/src/main/java/com/joanzapata/android/twitter/TwitterActivity.java#L44-L57)
 
 
-> **BaseAdapterHelper** aims to make BaseAdapter's ```getView()``` method much more readable, getting rid of the [ViewHolder pattern](http://www.jmanzano.es/blog/?p=166) boilerplate code.
+> **ViewHolder** aims to make BaseAdapter's ```getView()``` method much more readable, getting rid of the [ViewHolder pattern](http://www.jmanzano.es/blog/?p=166) boilerplate code.
 
 > **QuickAdapter** allows you to shorten the code of most usual ```BaseAdapter```, taking care of implementing everything for you based on your data list. You only need to focus on the mapping between your view and your model.
 
 # Get it
 
-BaseAdapter Helper is now **available on Maven Central**.
+BaseAdapterHelper is now **available on Maven Central**.
 
 ```xml
 <dependency>
@@ -19,7 +19,7 @@ BaseAdapter Helper is now **available on Maven Central**.
 
 # Features
 
-## BaseAdapterHelper
+## ViewHolder
 
 * ```setText()``` Calls ```setText(String)``` on any TextView.
 * ```setAlpha()``` Calls ```setAlpha(float)``` on any View.
@@ -40,7 +40,7 @@ BaseAdapter Helper is now **available on Maven Central**.
 
 # Performance
 
-The performances using the BaseAdapter Helper are **equivalent** to the ones of the **ViewHolder pattern**.
+The performances using the BaseAdapterHelper are **equivalent** to the ones of the hard coded **ViewHolder pattern**.
 It has been tested on **thousands items list** of **complex item structure** with more than **30 views to be adapted** on each item, and the ```getView()``` method has shown ```similar execution times```.
 
 # License

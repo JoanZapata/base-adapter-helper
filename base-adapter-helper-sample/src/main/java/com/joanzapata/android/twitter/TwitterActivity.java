@@ -15,13 +15,9 @@
  */
 package com.joanzapata.android.twitter;
 
-import android.os.Bundle;
-import android.text.util.Linkify;
-import android.util.Log;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
 import com.googlecode.androidannotations.annotations.*;
-import com.joanzapata.android.BaseAdapterHelper;
+import com.joanzapata.android.ViewHolder;
 import com.joanzapata.android.QuickAdapter;
 import com.joanzapata.android.twitter.component.ExtendedListView;
 import twitter4j.Status;
@@ -29,7 +25,6 @@ import twitter4j.Status;
 import java.text.DateFormat;
 import java.util.List;
 
-import static com.actionbarsherlock.view.Window.FEATURE_INDETERMINATE_PROGRESS;
 import static com.joanzapata.android.twitter.R.id.*;
 import static java.text.DateFormat.*;
 
@@ -58,7 +53,7 @@ public class TwitterActivity extends SherlockActivity implements ExtendedListVie
         if (adapter == null)
             adapter = new QuickAdapter<Status>(this, R.layout.tweet) {
                 @Override
-                protected void convert(BaseAdapterHelper helper, Status status) {
+                protected void convert(ViewHolder helper, Status status) {
                     boolean isRetweet = status.isRetweet();
                     if (isRetweet) status = status.getRetweetedStatus();
 

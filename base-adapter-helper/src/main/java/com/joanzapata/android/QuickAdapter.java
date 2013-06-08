@@ -16,7 +16,6 @@
 package com.joanzapata.android;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,12 +26,12 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.joanzapata.android.BaseAdapterHelper.get;
+import static com.joanzapata.android.ViewHolder.get;
 
 /**
  * Abstraction class of a BaseAdapter in which you only need
  * to provide the convert() implementation.<br/>
- * Using the provided BaseAdapterHelper, your code is minimalist.
+ * Using the provided ViewHolder, your code is minimalist.
  * @param <T> The type of the items in the list.
  */
 public abstract class QuickAdapter<T> extends BaseAdapter {
@@ -99,7 +98,7 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (getItemViewType(position) == 0) {
-            final BaseAdapterHelper helper = get(context, convertView, parent, layoutResId);
+            final ViewHolder helper = get(context, convertView, parent, layoutResId);
             convert(helper, getItem(position));
             return helper.getView();
         }
@@ -144,5 +143,5 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
      * @param helper A fully initialized helper.
      * @param item   The item that needs to be displayed.
      */
-    protected abstract void convert(BaseAdapterHelper helper, T item);
+    protected abstract void convert(ViewHolder helper, T item);
 }

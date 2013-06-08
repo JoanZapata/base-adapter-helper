@@ -37,14 +37,14 @@ import com.squareup.picasso.RequestBuilder;
  * <b>Usage</b>
  * <p/>
  * <pre>
- * return BaseAdapterHelper.get(context, convertView, parent, R.layout.item)
+ * return ViewHolder.get(context, convertView, parent, R.layout.item)
  *         .setText(R.id.tvName, contact.getName())
  *         .setText(R.id.tvEmails, contact.getEmails().toString())
  *         .setText(R.id.tvNumbers, contact.getNumbers().toString())
  *         .getView();
  * </pre>
  */
-public class BaseAdapterHelper {
+public class ViewHolder {
 
     /** Views indexed with their IDs */
     private final SparseArray<View> views;
@@ -53,7 +53,7 @@ public class BaseAdapterHelper {
 
     private View convertView;
 
-    private BaseAdapterHelper(Context context, ViewGroup parent, int layoutId) {
+    private ViewHolder(Context context, ViewGroup parent, int layoutId) {
         this.context = context;
         this.views = new SparseArray<View>();
         convertView = LayoutInflater.from(context) //
@@ -62,22 +62,22 @@ public class BaseAdapterHelper {
     }
 
     /**
-     * This method is the only entry point to get a BaseAdapterHelper.
+     * This method is the only entry point to get a ViewHolder.
      * @param context     The current context.
      * @param convertView the convertView arg passed to the getView() method.
      * @param parent      the parent arg passed to the getView() method.
-     * @return A BaseAdapterHelper instance.
+     * @return A ViewHolder instance.
      */
-    public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent, int layoutId) {
+    public static ViewHolder get(Context context, View convertView, ViewGroup parent, int layoutId) {
         if (convertView == null) {
-            return new BaseAdapterHelper(context, parent, layoutId);
+            return new ViewHolder(context, parent, layoutId);
         }
-        return (BaseAdapterHelper) convertView.getTag();
+        return (ViewHolder) convertView.getTag();
     }
 
     /**
      * This method allows you to retrieve a view and perform custom
-     * operations on it, not covered by the BaseAdapterHelper.<br/>
+     * operations on it, not covered by the ViewHolder.<br/>
      * If you think it's a common use case, please consider creating
      * a new issue at https://github.com/JoanZapata/base-adapter-helper/issues.
      * @param viewId The id of the view you want to retrieve.
@@ -90,9 +90,9 @@ public class BaseAdapterHelper {
      * Will set the text of a TextView.
      * @param viewId The view id.
      * @param value  The text to put in the text view.
-     * @return The BaseAdapterHelper for chaining.
+     * @return The ViewHolder for chaining.
      */
-    public BaseAdapterHelper setText(int viewId, String value) {
+    public ViewHolder setText(int viewId, String value) {
         TextView view = retrieveView(viewId);
         view.setText(value);
         return this;
@@ -102,9 +102,9 @@ public class BaseAdapterHelper {
      * Will set the image of an ImageView from a resource id.
      * @param viewId     The view id.
      * @param imageResId The image resource id.
-     * @return The BaseAdapterHelper for chaining.
+     * @return The ViewHolder for chaining.
      */
-    public BaseAdapterHelper setImageResource(int viewId, int imageResId) {
+    public ViewHolder setImageResource(int viewId, int imageResId) {
         ImageView view = retrieveView(viewId);
         view.setImageResource(imageResId);
         return this;
@@ -114,9 +114,9 @@ public class BaseAdapterHelper {
      * Will set the image of an ImageView from a drawable.
      * @param viewId   The view id.
      * @param drawable The image drawable.
-     * @return The BaseAdapterHelper for chaining.
+     * @return The ViewHolder for chaining.
      */
-    public BaseAdapterHelper setImageDrawable(int viewId, Drawable drawable) {
+    public ViewHolder setImageDrawable(int viewId, Drawable drawable) {
         ImageView view = retrieveView(viewId);
         view.setImageDrawable(drawable);
         return this;
@@ -126,12 +126,12 @@ public class BaseAdapterHelper {
      * Will download an image from a URL and put it in an ImageView.<br/>
      * It uses Square's Picasso library to download the image asynchronously and put the result into the ImageView.<br/>
      * Picasso manages recycling of views in a ListView.<br/>
-     * If you need more control over the Picasso settings, use {BaseAdapterHelper#setImageBuilder}.
+     * If you need more control over the Picasso settings, use {ViewHolder#setImageBuilder}.
      * @param viewId   The view id.
      * @param imageUrl The image URL.
-     * @return The BaseAdapterHelper for chaining.
+     * @return The ViewHolder for chaining.
      */
-    public BaseAdapterHelper setImageUrl(int viewId, String imageUrl) {
+    public ViewHolder setImageUrl(int viewId, String imageUrl) {
         ImageView view = retrieveView(viewId);
         Picasso.with(context).load(imageUrl).into(view);
         return this;
@@ -141,16 +141,16 @@ public class BaseAdapterHelper {
      * Will download an image from a URL and put it in an ImageView.<br/>
      * @param viewId         The view id.
      * @param requestBuilder The Picasso request builder. (e.g. Picasso.with(context).load(imageUrl))
-     * @return The BaseAdapterHelper for chaining.
+     * @return The ViewHolder for chaining.
      */
-    public BaseAdapterHelper setImageBuilder(int viewId, RequestBuilder requestBuilder) {
+    public ViewHolder setImageBuilder(int viewId, RequestBuilder requestBuilder) {
         ImageView view = retrieveView(viewId);
         requestBuilder.into(view);
         return this;
     }
 
     /** Add an action to set the image of an image view. Can be called multiple times. */
-    public BaseAdapterHelper setImageBitmap(int viewId, Bitmap bitmap) {
+    public ViewHolder setImageBitmap(int viewId, Bitmap bitmap) {
         ImageView view = retrieveView(viewId);
         view.setImageBitmap(bitmap);
         return this;
@@ -160,7 +160,7 @@ public class BaseAdapterHelper {
      * Add an action to set the alpha of a view. Can be called multiple times.
      * Alpha between 0-1.
      */
-    public BaseAdapterHelper setAlpha(int viewId, float value) {
+    public ViewHolder setAlpha(int viewId, float value) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             retrieveView(viewId).setAlpha(value);
         } else {
@@ -177,9 +177,9 @@ public class BaseAdapterHelper {
      * Set a view visibility to VISIBLE (true) or GONE (false).
      * @param viewId  The view id.
      * @param visible True for VISIBLE, false for GONE.
-     * @return The BaseAdapterHelper for chaining.
+     * @return The ViewHolder for chaining.
      */
-    public BaseAdapterHelper setVisible(int viewId, boolean visible) {
+    public ViewHolder setVisible(int viewId, boolean visible) {
         ImageView view = retrieveView(viewId);
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
         return this;
@@ -188,9 +188,9 @@ public class BaseAdapterHelper {
     /**
      * Add links into a TextView.
      * @param viewId The id of the TextView to linkify.
-     * @return The BaseAdapterHelper for chaining.
+     * @return The ViewHolder for chaining.
      */
-    public BaseAdapterHelper linkify(int viewId) {
+    public ViewHolder linkify(int viewId) {
         TextView view = retrieveView(viewId);
         Linkify.addLinks(view, Linkify.ALL);
         return this;
