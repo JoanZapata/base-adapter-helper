@@ -22,5 +22,6 @@
     android:autoLink="all"
     android:id="@+id/htmlAbout"
     android:gravity="center_vertical"
+    android:padding="@dimen/smallSpace"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />

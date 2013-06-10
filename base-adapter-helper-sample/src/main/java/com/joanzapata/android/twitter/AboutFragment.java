@@ -1,6 +1,7 @@
 package com.joanzapata.android.twitter;
 
 import android.support.v4.app.Fragment;
+import android.text.method.LinkMovementMethod;
 import android.webkit.WebView;
 import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockFragment;

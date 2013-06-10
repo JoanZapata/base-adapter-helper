@@ -22,12 +22,20 @@
         <h1>BaseAdapterHelper demo<h1>
         <p><b>BaseAdapterHelper</b> is an open source library which aims to make your life easier when it comes to <b>ListView</b>s and <b>Adapter</b>s.</p>
         <p>
-            <a href="http://joanzapata.com/base-adapter-helper/">Website</a> |
-            <a href="https://github.com/JoanZapata/base-adapter-helper">Github</a> |
-            <a href="http://joanzapata.com">Joan Zapata</a>
+            <b>Project\'s website</b><br/>
+            <small>http://joanzapata.com/base-adapter-helper</small>
+        </p>
+         <p>
+            <b>View it on Github</b><br/>
+            <small>https://github.com/JoanZapata/base-adapter-helper</small>
+        </p>
+         <p>
+            <b>Follow me on Twitter</b><br/>
+            <small>https://twitter.com/JoanZap</small>
         </p>
         <br/>
-        <p>The project is licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License v2.0</a>.</p>
+        <p>The project is licensed under the Apache License v2.0.</p>
+            <blockquote><small>http://www.apache.org/licenses/LICENSE-2.0.html</small></blockquote>
         ]]></string>
     <string name="about">About</string>
     <string name="refresh">Refresh</string>
