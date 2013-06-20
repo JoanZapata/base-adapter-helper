@@ -1,5 +1,6 @@
 [![Overview](https://raw.github.com/JoanZapata/base-adapter-helper/master/header.png)](https://github.com/JoanZapata/base-adapter-helper/blob/5465bea778f098a059390c441416c501e599cc10/base-adapter-helper-sample/src/main/java/com/joanzapata/android/twitter/TwitterActivity.java#L44-L57)
 
+[![Alt](http://developer.android.com/images/brand/en_app_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=com.joanzapata.android.twitter)
 
 > **BaseAdapterHelper** aims to make BaseAdapter's ```getView()``` method much more readable, getting rid of the [ViewHolder pattern](http://www.jmanzano.es/blog/?p=166) boilerplate code.
 
