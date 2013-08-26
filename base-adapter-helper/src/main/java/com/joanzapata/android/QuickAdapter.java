@@ -15,19 +15,18 @@
  */
 package com.joanzapata.android;
 
+import static com.joanzapata.android.BaseAdapterHelper.get;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.joanzapata.android.BaseAdapterHelper.get;
 
 /**
  * Abstraction class of a BaseAdapter in which you only need
@@ -130,6 +129,25 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
 
     public void addAll(List<T> elem) {
         data.addAll(elem);
+        notifyDataSetChanged();
+    }
+
+    public void set(T oldElem, T newElem) {
+    	set(data.indexOf(oldElem), newElem);
+    }
+
+    public void set(int index, T elem) {
+        data.set(index, elem);
+        notifyDataSetChanged();
+    }
+
+    public void remove(T elem) {
+    	data.remove(elem);
+    	notifyDataSetChanged();
+    }
+
+    public void remove(int index) {
+        data.remove(index);
         notifyDataSetChanged();
     }
 
