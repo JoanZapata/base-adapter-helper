@@ -180,7 +180,7 @@ public class BaseAdapterHelper {
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setVisible(int viewId, boolean visible) {
-        ImageView view = retrieveView(viewId);
+        View view = retrieveView(viewId);
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
         return this;
     }
