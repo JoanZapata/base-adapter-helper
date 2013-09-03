@@ -98,7 +98,7 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (getItemViewType(position) == 0) {
-            final BaseAdapterHelper helper = get(context, convertView, parent, layoutResId);
+            final BaseAdapterHelper helper = get(context, convertView, parent, layoutResId, position);
             convert(helper, getItem(position));
             return helper.getView();
         }

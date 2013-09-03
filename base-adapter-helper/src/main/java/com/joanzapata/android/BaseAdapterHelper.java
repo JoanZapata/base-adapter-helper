@@ -51,10 +51,13 @@ public class BaseAdapterHelper {
 
     private final Context context;
 
+    private int position;
+
     private View convertView;
 
-    private BaseAdapterHelper(Context context, ViewGroup parent, int layoutId) {
+    private BaseAdapterHelper(Context context, ViewGroup parent, int layoutId, int position) {
         this.context = context;
+        this.position = position;
         this.views = new SparseArray<View>();
         convertView = LayoutInflater.from(context) //
                 .inflate(layoutId, parent, false);
@@ -69,8 +72,13 @@ public class BaseAdapterHelper {
      * @return A BaseAdapterHelper instance.
      */
     public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent, int layoutId) {
+        return get(context, convertView, parent, -1);
+    }
+
+    /** This method is package private and should only be used by QuickAdapter. */
+    static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent, int layoutId, int position) {
         if (convertView == null) {
-            return new BaseAdapterHelper(context, parent, layoutId);
+            return new BaseAdapterHelper(context, parent, layoutId, position);
         }
         return (BaseAdapterHelper) convertView.getTag();
     }
@@ -199,6 +207,17 @@ public class BaseAdapterHelper {
     /** Retrieve the convertView */
     public View getView() {
         return convertView;
+    }
+
+    /**
+     * Retrieve the overall position of the data in the list.
+     * @throws IllegalArgumentException If the position hasn't been set at the construction of the this helper.
+     */
+    public int getPosition() {
+        if (position == -1)
+            throw new IllegalStateException("Use BaseAdapterHelper constructor " +
+                    "with position if you need to retrieve the position.");
+        return position;
     }
 
     @SuppressWarnings("unchecked")
