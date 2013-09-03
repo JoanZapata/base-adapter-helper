@@ -151,6 +151,10 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public boolean contains(T elem) {
+        return data.contains(elem);
+    }
+
     /** Clear data list */
     public void clear() {
         data.clear();
