@@ -67,8 +67,8 @@ public class BaseAdapterHelper {
     /**
      * This method is the only entry point to get a BaseAdapterHelper.
      * @param context     The current context.
-     * @param convertView the convertView arg passed to the getView() method.
-     * @param parent      the parent arg passed to the getView() method.
+     * @param convertView The convertView arg passed to the getView() method.
+     * @param parent      The parent arg passed to the getView() method.
      * @return A BaseAdapterHelper instance.
      */
     public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent, int layoutId) {

@@ -15,11 +15,6 @@
  */
 package com.joanzapata.android;
 
-import static com.joanzapata.android.BaseAdapterHelper.get;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
@@ -27,6 +22,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.joanzapata.android.BaseAdapterHelper.get;
 
 /**
  * Abstraction class of a BaseAdapter in which you only need
