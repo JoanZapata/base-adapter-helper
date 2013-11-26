@@ -72,7 +72,7 @@ public class BaseAdapterHelper {
      * @return A BaseAdapterHelper instance.
      */
     public static BaseAdapterHelper get(Context context, View convertView, ViewGroup parent, int layoutId) {
-        return get(context, convertView, parent, -1);
+        return get(context, convertView, parent, layoutId, -1);
     }
 
     /** This method is package private and should only be used by QuickAdapter. */
