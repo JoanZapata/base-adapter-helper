@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -44,7 +45,7 @@
         <android.version>4.1.1.4</android.version>
         <java.version>1.6</java.version>
         <picasso.version>1.0.2</picasso.version>
-        <android-maven-plugin.version>3.5.0</android-maven-plugin.version>
+        <android-maven-plugin.version>3.7.0</android-maven-plugin.version>
         <api.platform>16</api.platform>
         <androidannotations.version>2.7</androidannotations.version>
         <maven-jarsigner.version>1.2</maven-jarsigner.version>
@@ -80,8 +81,8 @@
     </build>
 
     <modules>
-	<module>base-adapter-helper</module>
-	<module>base-adapter-helper-sample</module>
+        <module>base-adapter-helper</module>
+        <module>base-adapter-helper-sample</module>
     </modules>
 
 </project>
