@@ -26,6 +26,7 @@ BaseAdapter Helper is now **available on Maven Central**.
 * ```setAlpha()``` Calls ```setAlpha(float)``` on any View.
 * ```setVisible()``` Calls ```setVisibility(int)``` on any View.
 * ```linkify()``` Calls ```Linkify.addLinks(view, ALL)``` on any TextView.
+* ```setTypeface()``` Calls ```setTypeface(Typeface)``` on any TextView.
 * ```setImageResource()``` Calls ```setImageResource(int)``` on any ImageView.
 * ```setImageDrawable()``` Calls ```setImageDrawable(Drawable)``` on any ImageView.
 * ```setImageBitmap()``` Calls ```setImageBitmap(Bitmap)``` on any ImageView.

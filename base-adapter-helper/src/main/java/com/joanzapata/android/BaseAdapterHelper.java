@@ -17,6 +17,7 @@ package com.joanzapata.android;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.util.Linkify;
@@ -201,6 +202,22 @@ public class BaseAdapterHelper {
     public BaseAdapterHelper linkify(int viewId) {
         TextView view = retrieveView(viewId);
         Linkify.addLinks(view, Linkify.ALL);
+        return this;
+    }
+
+    /** Apply the typeface to the given viewId */
+    public BaseAdapterHelper setTypeface(int viewId, Typeface typeface) {
+        TextView view = retrieveView(viewId);
+        view.setTypeface(typeface);
+        return this;
+    }
+
+    /** Apply the typeface to all the given viewIds */
+    public BaseAdapterHelper setTypeface(Typeface typeface, int... viewIds) {
+        for (int viewId : viewIds) {
+            TextView view = retrieveView(viewId);
+            view.setTypeface(typeface);
+        }
         return this;
     }
 
