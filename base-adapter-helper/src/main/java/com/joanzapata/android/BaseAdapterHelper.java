@@ -29,7 +29,7 @@ import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestBuilder;
+import com.squareup.picasso.RequestCreator;
 
 /**
  * Allows an abstraction of the ViewHolder pattern.<br>
@@ -152,7 +152,7 @@ public class BaseAdapterHelper {
      * @param requestBuilder The Picasso request builder. (e.g. Picasso.with(context).load(imageUrl))
      * @return The BaseAdapterHelper for chaining.
      */
-    public BaseAdapterHelper setImageBuilder(int viewId, RequestBuilder requestBuilder) {
+    public BaseAdapterHelper setImageBuilder(int viewId, RequestCreator requestBuilder) {
         ImageView view = retrieveView(viewId);
         requestBuilder.into(view);
         return this;
