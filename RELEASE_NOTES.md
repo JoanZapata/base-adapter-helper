@@ -1,3 +1,9 @@
+# 1.1.2
+
+* Updated Picasso to 2.1.1
+* Added ```setTypeface()``` and ```setTypefaces()``` methods
+* Fixed bug
+
 # 1.1.1
 
 * Added ```get()```, ```set()```, ```remove()``` and ```contains()``` to ```QuickAdapter```
