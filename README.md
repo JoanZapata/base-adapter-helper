@@ -8,13 +8,13 @@
 
 # Get it
 
-BaseAdapter Helper is now **available on Maven Central**.
+BaseAdapter Helper is now **[available on Maven Central](http://search.maven.org/remotecontent?filepath=com/joanzapata/android/base-adapter-helper/1.1.2/base-adapter-helper-1.1.2.jar)**.
 
 ```xml
 <dependency>
   <groupId>com.joanzapata.android</groupId>
   <artifactId>base-adapter-helper</artifactId>
-  <version>1.1.1</version>
+  <version>1.1.2</version>
 </dependency>
 ```
 
