@@ -27,7 +27,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
+
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
@@ -218,6 +221,70 @@ public class BaseAdapterHelper {
             TextView view = retrieveView(viewId);
             view.setTypeface(typeface);
         }
+        return this;
+    }
+
+    /**
+     * Sets the progress of a ProgressBar.
+     * @param viewId The view id.
+     * @param progress The progress.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setProgress(int viewId, int progress) {
+        ProgressBar view = retrieveView(viewId);
+        view.setProgress(progress);
+        return this;
+    }
+
+    /**
+     * Sets the progress and max of a ProgressBar.
+     * @param viewId The view id.
+     * @param progress The progress.
+     * @param max The max value of a ProgressBar.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setProgress(int viewId, int progress, int max) {
+        ProgressBar view = retrieveView(viewId);
+        view.setProgress(progress);
+        view.setMax(max);
+        return this;
+    }
+
+    /**
+     * Sets the range of a ProgressBar to 0...max.
+     * @param viewId The view id.
+     * @param max The max value of a ProgressBar.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setMax(int viewId, int max) {
+        ProgressBar view = retrieveView(viewId);
+        view.setMax(max);
+        return this;
+    }
+
+    /**
+     * Sets the rating (the number of stars filled) of a RatingBar.
+     * @param viewId The view id.
+     * @param rating The rating.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setRating(int viewId, float rating){
+        RatingBar view = retrieveView(viewId);
+        view.setRating(rating);
+        return this;
+    }
+
+    /**
+     * Sets the rating (the number of stars filled) and max of a RatingBar.
+     * @param viewId The view id.
+     * @param rating The rating.
+     * @param max The range of the RatingBar to 0...max.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setRating(int viewId, float rating, int max){
+        RatingBar view = retrieveView(viewId);
+        view.setRating(rating);
+        view.setMax(max);
         return this;
     }
 
