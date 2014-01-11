@@ -1,3 +1,11 @@
+# 1.1.3
+
+* ```setProgress(view, progress)```
+* ```setProgress(view, progress, max)```
+* ```setMax```
+* ```setRating(view, rating)```
+* ```setRating(view, rating, max)```
+
 # 1.1.2
 
 * Updated Picasso to 2.1.1
