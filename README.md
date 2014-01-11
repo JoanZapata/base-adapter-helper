@@ -27,6 +27,9 @@ BaseAdapter Helper is now **[available on Maven Central](http://search.maven.org
 * ```setVisible()``` Calls ```setVisibility(int)``` on any View.
 * ```linkify()``` Calls ```Linkify.addLinks(view, ALL)``` on any TextView.
 * ```setTypeface()``` Calls ```setTypeface(Typeface)``` on any TextView.
+* ```setProgress()``` Calls ```setProgress(int)``` on any ProgressBar.
+* ```setMax()``` Calls ```setMax(int)``` on any ProgressBar.
+* ```setRating()``` Calls ```setRating(int)``` on any RatingBar.
 * ```setImageResource()``` Calls ```setImageResource(int)``` on any ImageView.
 * ```setImageDrawable()``` Calls ```setImageDrawable(Drawable)``` on any ImageView.
 * ```setImageBitmap()``` Calls ```setImageBitmap(Bitmap)``` on any ImageView.
