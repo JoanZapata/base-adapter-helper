@@ -30,6 +30,8 @@
       <section>
         <p><a href="https://github.com/JoanZapata/base-adapter-helper/blob/5465bea778f098a059390c441416c501e599cc10/base-adapter-helper-sample/src/main/java/com/joanzapata/android/twitter/TwitterActivity.java#L44-L57"><img src="https://raw.github.com/JoanZapata/base-adapter-helper/master/header.png" alt="Overview"></a></p>
 
+<p><a href="https://play.google.com/store/apps/details?id=com.joanzapata.android.twitter"><img src="http://developer.android.com/images/brand/en_app_rgb_wo_45.png" alt="Alt"></a></p>
+
 <blockquote>
 <p><strong>BaseAdapterHelper</strong> aims to make BaseAdapter's <code>getView()</code> method much more readable, getting rid of the <a href="http://www.jmanzano.es/blog/?p=166">ViewHolder pattern</a> boilerplate code.</p>
 
@@ -39,12 +41,12 @@
 <h1>
 <a name="get-it" class="anchor" href="#get-it"><span class="octicon octicon-link"></span></a>Get it</h1>
 
-<p>BaseAdapter Helper is now <strong>available on Maven Central</strong>.</p>
+<p>BaseAdapter Helper is now <strong><a href="http://search.maven.org/remotecontent?filepath=com/joanzapata/android/base-adapter-helper/1.1.3/base-adapter-helper-1.1.3.jar">available on Maven Central</a></strong>.</p>
 
-<div class="highlight"><pre><span class="nt">&lt;dependency&gt;</span>
+<div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.joanzapata.android<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>base-adapter-helper<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>1.1.1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.3<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 
@@ -63,6 +65,14 @@
 <code>setVisible()</code> Calls <code>setVisibility(int)</code> on any View.</li>
 <li>
 <code>linkify()</code> Calls <code>Linkify.addLinks(view, ALL)</code> on any TextView.</li>
+<li>
+<code>setTypeface()</code> Calls <code>setTypeface(Typeface)</code> on any TextView.</li>
+<li>
+<code>setProgress()</code> Calls <code>setProgress(int)</code> on any ProgressBar.</li>
+<li>
+<code>setMax()</code> Calls <code>setMax(int)</code> on any ProgressBar.</li>
+<li>
+<code>setRating()</code> Calls <code>setRating(int)</code> on any RatingBar.</li>
 <li>
 <code>setImageResource()</code> Calls <code>setImageResource(int)</code> on any ImageView.</li>
 <li>

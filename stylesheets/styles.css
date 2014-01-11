@@ -183,11 +183,11 @@ footer {
   bottom:50px;
 }
 
+@media print, screen and (max-width: 960px) {
   
   div.wrapper {
     width:auto;
-    margin:0 auto;
-    max-width: 960px;
+    margin:0;
   }
   
   header, section, footer {
@@ -197,7 +197,7 @@ footer {
   }
   
   header {
-    position: relative;
+    padding-right:320px;
   }
   
   section {
@@ -216,6 +216,7 @@ footer {
     right:50px;
     top:52px;
   }
+}
 
 @media print, screen and (max-width: 720px) {
   body {
