@@ -245,8 +245,8 @@ public class BaseAdapterHelper {
      */
     public BaseAdapterHelper setProgress(int viewId, int progress, int max) {
         ProgressBar view = retrieveView(viewId);
-        view.setProgress(progress);
         view.setMax(max);
+        view.setProgress(progress);
         return this;
     }
 
@@ -283,8 +283,8 @@ public class BaseAdapterHelper {
      */
     public BaseAdapterHelper setRating(int viewId, float rating, int max){
         RatingBar view = retrieveView(viewId);
-        view.setRating(rating);
         view.setMax(max);
+        view.setRating(rating);
         return this;
     }
 
