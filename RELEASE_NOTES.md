@@ -1,3 +1,7 @@
+# 1.1.4
+
+* Added ability to subclass `BaseAdapterHelper` and set it in the `QuickAdapter`
+
 # 1.1.3
 
 * ```setProgress(view, progress)```
