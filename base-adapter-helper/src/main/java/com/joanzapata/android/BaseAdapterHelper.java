@@ -30,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
@@ -119,6 +118,42 @@ public class BaseAdapterHelper {
     public BaseAdapterHelper setImageResource(int viewId, int imageResId) {
         ImageView view = retrieveView(viewId);
         view.setImageResource(imageResId);
+        return this;
+    }
+
+    /**
+     * Will set background color of a view.
+     * @param viewId The view id.
+     * @param color  A color, not a resource id.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setBackgroundColor(int viewId, int color) {
+        View view = retrieveView(viewId);
+        view.setBackgroundColor(color);
+        return this;
+    }
+
+    /**
+     * Will set background of a view.
+     * @param viewId        The view id.
+     * @param backgroundRes A resource to use as a background.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setBackgroundRes(int viewId, int backgroundRes) {
+        View view = retrieveView(viewId);
+        view.setBackgroundResource(backgroundRes);
+        return this;
+    }
+
+    /**
+     * Will set text color of a TextView.
+     * @param viewId    The view id.
+     * @param textColor The text color (not a resource id).
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setTextColor(int viewId, int textColor) {
+        TextView view = retrieveView(viewId);
+        view.setTextColor(textColor);
         return this;
     }
 
@@ -226,7 +261,7 @@ public class BaseAdapterHelper {
 
     /**
      * Sets the progress of a ProgressBar.
-     * @param viewId The view id.
+     * @param viewId   The view id.
      * @param progress The progress.
      * @return The BaseAdapterHelper for chaining.
      */
@@ -238,9 +273,9 @@ public class BaseAdapterHelper {
 
     /**
      * Sets the progress and max of a ProgressBar.
-     * @param viewId The view id.
+     * @param viewId   The view id.
      * @param progress The progress.
-     * @param max The max value of a ProgressBar.
+     * @param max      The max value of a ProgressBar.
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setProgress(int viewId, int progress, int max) {
@@ -253,7 +288,7 @@ public class BaseAdapterHelper {
     /**
      * Sets the range of a ProgressBar to 0...max.
      * @param viewId The view id.
-     * @param max The max value of a ProgressBar.
+     * @param max    The max value of a ProgressBar.
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setMax(int viewId, int max) {
@@ -268,7 +303,7 @@ public class BaseAdapterHelper {
      * @param rating The rating.
      * @return The BaseAdapterHelper for chaining.
      */
-    public BaseAdapterHelper setRating(int viewId, float rating){
+    public BaseAdapterHelper setRating(int viewId, float rating) {
         RatingBar view = retrieveView(viewId);
         view.setRating(rating);
         return this;
@@ -278,10 +313,10 @@ public class BaseAdapterHelper {
      * Sets the rating (the number of stars filled) and max of a RatingBar.
      * @param viewId The view id.
      * @param rating The rating.
-     * @param max The range of the RatingBar to 0...max.
+     * @param max    The range of the RatingBar to 0...max.
      * @return The BaseAdapterHelper for chaining.
      */
-    public BaseAdapterHelper setRating(int viewId, float rating, int max){
+    public BaseAdapterHelper setRating(int viewId, float rating, int max) {
         RatingBar view = retrieveView(viewId);
         view.setRating(rating);
         view.setMax(max);
