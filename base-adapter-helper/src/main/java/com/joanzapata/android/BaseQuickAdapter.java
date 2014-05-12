@@ -26,8 +26,6 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.joanzapata.android.BaseAdapterHelper.get;
-
 /**
  * Abstraction class of a BaseAdapter in which you only need
  * to provide the convert() implementation.<br/>
@@ -36,15 +34,15 @@ import static com.joanzapata.android.BaseAdapterHelper.get;
  */
 public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends BaseAdapter {
 
-    private static final String TAG = BaseQuickAdapter.class.getSimpleName();
+	protected static final String TAG = BaseQuickAdapter.class.getSimpleName();
 
-    private final Context context;
+    protected final Context context;
 
-    private final int layoutResId;
+	protected final int layoutResId;
 
-    private final List<T> data;
+	protected final List<T> data;
 
-    private boolean displayIndeterminateProgress = false;
+	protected boolean displayIndeterminateProgress = false;
 
     /**
      * Create a QuickAdapter.
@@ -98,7 +96,7 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (getItemViewType(position) == 0) {
-            final BaseAdapterHelper helper = getAdapterHelper(position, convertView, parent);
+            final H helper = getAdapterHelper(position, convertView, parent);
             convert(helper, getItem(position));
             return helper.getView();
         }
@@ -172,7 +170,7 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
      * @param helper A fully initialized helper.
      * @param item   The item that needs to be displayed.
      */
-    protected abstract void convert(BaseAdapterHelper helper, T item);
+    protected abstract void convert(H helper, T item);
 
 	/**
 	 * You can override this method to use a custom BaseAdapterHelper in order to fit your needs
@@ -187,8 +185,6 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
 	 * @param parent The parent that this view will eventually be attached to
 	 * @return An instance of BaseAdapterHelper
 	 */
-	protected BaseAdapterHelper getAdapterHelper(int position, View convertView, ViewGroup parent) {
-		return get(context, convertView, parent, layoutResId, position);
-	}
+	protected abstract H getAdapterHelper(int position, View convertView, ViewGroup parent);
 
 }
