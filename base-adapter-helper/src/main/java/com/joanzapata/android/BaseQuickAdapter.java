@@ -34,9 +34,9 @@ import static com.joanzapata.android.BaseAdapterHelper.get;
  * Using the provided BaseAdapterHelper, your code is minimalist.
  * @param <T> The type of the items in the list.
  */
-public abstract class QuickAdapter<T> extends BaseAdapter {
+public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends BaseAdapter {
 
-    private static final String TAG = QuickAdapter.class.getSimpleName();
+    private static final String TAG = BaseQuickAdapter.class.getSimpleName();
 
     private final Context context;
 
@@ -51,7 +51,7 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
      * @param context     The context.
      * @param layoutResId The layout resource id of each item.
      */
-    public QuickAdapter(Context context, int layoutResId) {
+    public BaseQuickAdapter(Context context, int layoutResId) {
         this(context, layoutResId, null);
     }
 
@@ -62,7 +62,7 @@ public abstract class QuickAdapter<T> extends BaseAdapter {
      * @param layoutResId The layout resource id of each item.
      * @param data        A new list is created out of this one to avoid mutable list
      */
-    public QuickAdapter(Context context, int layoutResId, List<T> data) {
+    public BaseQuickAdapter(Context context, int layoutResId, List<T> data) {
         this.data = data == null ? new ArrayList<T>() : new ArrayList<T>(data);
         this.context = context;
         this.layoutResId = layoutResId;
