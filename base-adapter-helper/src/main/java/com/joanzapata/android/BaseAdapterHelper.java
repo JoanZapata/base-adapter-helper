@@ -158,6 +158,18 @@ public class BaseAdapterHelper {
     }
 
     /**
+     * Will set text color of a TextView.
+     * @param viewId       The view id.
+     * @param textColorRes The text color resource id.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setTextColorRes(int viewId, int textColorRes) {
+        TextView view = retrieveView(viewId);
+        view.setTextColor(context.getResources().getColor(textColorRes));
+        return this;
+    }
+
+    /**
      * Will set the image of an ImageView from a drawable.
      * @param viewId   The view id.
      * @param drawable The image drawable.
