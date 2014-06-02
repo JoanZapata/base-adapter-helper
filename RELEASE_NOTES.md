@@ -1,3 +1,10 @@
+# 1.1.5
+
+* ```setTextColorRes(view, colorRes)```
+* ```setTextColor(view, color)```
+* ```setBackgroundColorRes(view, colorRes)```
+* ```setBackgroundColor(view, color)```
+
 # 1.1.4
 
 * Added ability to subclass `BaseAdapterHelper` and set it in the `QuickAdapter`
