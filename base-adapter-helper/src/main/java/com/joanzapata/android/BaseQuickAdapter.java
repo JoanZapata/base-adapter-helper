@@ -149,6 +149,12 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
         notifyDataSetChanged();
     }
 
+    public void replaceAll(List<T> elem) {
+        data.clear();
+		data.addAll(elem);
+        notifyDataSetChanged();
+    }
+
     public boolean contains(T elem) {
         return data.contains(elem);
     }
