@@ -1,3 +1,6 @@
+# 1.1.6
+* Added ```replaceAll()``` to ```QuickAdapter```
+
 # 1.1.5
 
 * ```setTextColorRes(view, colorRes)```
