@@ -83,7 +83,11 @@ public class BaseAdapterHelper {
         if (convertView == null) {
             return new BaseAdapterHelper(context, parent, layoutId, position);
         }
-        return (BaseAdapterHelper) convertView.getTag();
+
+        // Retrieve the existing helper and update its position
+        BaseAdapterHelper existingHelper = (BaseAdapterHelper) convertView.getTag();
+        existingHelper.position = position;
+        return existingHelper;
     }
 
     /**
