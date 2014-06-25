@@ -1,3 +1,6 @@
+# 1.1.7
+* Fixed bug with position not being updated in ```BaseAdapterHelper```
+
 # 1.1.6
 * Added ```replaceAll()``` to ```QuickAdapter```
 
