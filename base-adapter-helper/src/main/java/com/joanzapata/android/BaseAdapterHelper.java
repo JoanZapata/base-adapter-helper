@@ -17,6 +17,7 @@ package com.joanzapata.android;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -259,18 +260,20 @@ public class BaseAdapterHelper {
         return this;
     }
 
-    /** Apply the typeface to the given viewId */
+    /** Apply the typeface to the given viewId, and enable subpixel rendering. */
     public BaseAdapterHelper setTypeface(int viewId, Typeface typeface) {
         TextView view = retrieveView(viewId);
         view.setTypeface(typeface);
+        view.setPaintFlags(view.getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
         return this;
     }
 
-    /** Apply the typeface to all the given viewIds */
+    /** Apply the typeface to all the given viewIds, and enable subpixel rendering. */
     public BaseAdapterHelper setTypeface(Typeface typeface, int... viewIds) {
         for (int viewId : viewIds) {
             TextView view = retrieveView(viewId);
             view.setTypeface(typeface);
+            view.setPaintFlags(view.getPaintFlags() | Paint.SUBPIXEL_TEXT_FLAG);
         }
         return this;
     }
