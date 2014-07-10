@@ -1,3 +1,6 @@
+# 1.1.8
+* Automatically enable sub-pixel rendering on texts when calling ```setTypeface()```.
+
 # 1.1.7
 * Fixed bug with position not being updated in ```BaseAdapterHelper```
 
