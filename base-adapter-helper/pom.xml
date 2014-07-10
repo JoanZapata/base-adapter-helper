@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.joanzapata.android</groupId>
         <artifactId>base-adapter-helper-parent</artifactId>
-        <version>1.1.8-SNAPSHOT</version>
+        <version>1.1.8</version>
     </parent>
 
     <groupId>com.joanzapata.android</groupId>
