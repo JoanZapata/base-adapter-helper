@@ -59,6 +59,9 @@ public class BaseAdapterHelper {
 
     private View convertView;
 
+    /** Package private field to retain the associated user object and detect a change */
+    Object associatedObject;
+
     private BaseAdapterHelper(Context context, ViewGroup parent, int layoutId, int position) {
         this.context = context;
         this.position = position;

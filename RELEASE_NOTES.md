@@ -1,3 +1,6 @@
+# 1.1.9
+* Added ```EnhancedQuickAdapter``` for those who need to know if the view was bound to the same object before or not, during the view convertion.
+
 # 1.1.8
 * Automatically enable sub-pixel rendering on texts when calling ```setTypeface()```.
 
