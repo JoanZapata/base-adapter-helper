@@ -8,20 +8,20 @@
 
 # Get it
 
-BaseAdapter Helper is now **[available on Maven Central](http://search.maven.org/remotecontent?filepath=com/joanzapata/android/base-adapter-helper/1.1.8/base-adapter-helper-1.1.8.jar)**.
+BaseAdapter Helper is now **[available on Maven Central](http://search.maven.org/remotecontent?filepath=com/joanzapata/android/base-adapter-helper/1.1.9/base-adapter-helper-1.1.9.jar)**.
 
 ```xml
 <dependency>
   <groupId>com.joanzapata.android</groupId>
   <artifactId>base-adapter-helper</artifactId>
-  <version>1.1.8</version>
+  <version>1.1.9</version>
 </dependency>
 ```
 
 or
 
 ```groovy
-compile 'com.joanzapata.android:base-adapter-helper:1.1.8'
+compile 'com.joanzapata.android:base-adapter-helper:1.1.9'
 ```
 
 # Features
