@@ -1,3 +1,11 @@
+# 1.1.0
+* ```setOnClickListener()```
+* ```setOnTouchListener()```
+* ```setOnLongClickListener()```
+* ```setTag()```
+* ```setChecked()```
+* ```setAdapter()```
+
 # 1.1.9
 * Added ```EnhancedQuickAdapter``` for those who need to know if the view was bound to the same object before or not, during the view convertion.
 
