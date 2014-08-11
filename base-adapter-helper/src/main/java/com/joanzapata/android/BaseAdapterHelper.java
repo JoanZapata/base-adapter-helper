@@ -27,6 +27,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.Checkable;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -342,6 +346,91 @@ public class BaseAdapterHelper {
         RatingBar view = retrieveView(viewId);
         view.setMax(max);
         view.setRating(rating);
+        return this;
+    }
+
+    /**
+     * Sets the on click listener of the view.
+     * @param viewId The view id.
+     * @param listener The on click listener;
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setOnClickListener(int viewId, View.OnClickListener listener) {
+        View view = retrieveView(viewId);
+        view.setOnClickListener(listener);
+        return this;
+    }
+
+    /**
+     * Sets the on touch listener of the view.
+     * @param viewId The view id.
+     * @param listener The on touch listener;
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setOnTouchListener(int viewId, View.OnTouchListener listener) {
+        View view = retrieveView(viewId);
+        view.setOnTouchListener(listener);
+        return this;
+    }
+
+    /**
+     * Sets the on long click listener of the view.
+     * @param viewId The view id.
+     * @param listener The on long click listener;
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setOnLongClickListener(int viewId, View.OnLongClickListener listener) {
+        View view = retrieveView(viewId);
+        view.setOnLongClickListener(listener);
+        return this;
+    }
+
+    /**
+     * Sets the tag of the view.
+     * @param viewId The view id.
+     * @param tag The tag;
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setTag(int viewId, Object tag) {
+        View view = retrieveView(viewId);
+        view.setTag(tag);
+        return this;
+    }
+
+    /**
+     * Sets the tag of the view.
+     * @param viewId The view id.
+     * @param key The key of tag;
+     * @param tag The tag;
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setTag(int viewId, int key, Object tag) {
+        View view = retrieveView(viewId);
+        view.setTag(key, tag);
+        return this;
+    }
+
+    /**
+     * Sets the checked status of a checkable.
+     * @param viewId The view id.
+     * @param checked The checked status;
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setChecked(int viewId, boolean checked) {
+        Checkable view = (Checkable)retrieveView(viewId);
+        view.setChecked(checked);
+        return this;
+    }
+
+    /**
+     * Sets the adapter of a adapter view.
+     * @param viewId The view id.
+     * @param adapter The adapter;
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setAdapter(int viewId, Adapter adapter) {
+        AdapterView view = retrieveView(viewId);
+        view.setAdapter(adapter);
         return this;
     }
 
