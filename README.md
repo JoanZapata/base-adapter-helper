@@ -41,6 +41,12 @@ compile 'com.joanzapata.android:base-adapter-helper:1.1.9'
 * ```setImageBitmap()``` Calls ```setImageBitmap(Bitmap)``` on any ImageView.
 * ```setImageUrl()``` Uses [Square's Picasso](http://square.github.io/picasso/) to download the image and put it in an ImageView.
 * ```setImageBuilder()``` Associates a [Square's Picasso](http://square.github.io/picasso/) RequestBuilder to an ImageView.
+* ```setOnClickListener()```
+* ```setOnTouchListener()```
+* ```setOnLongClickListener()```
+* ```setTag()```
+* ```setChecked()```
+* ```setAdapter()```
 * If you need something else, please [report an issue](https://github.com/JoanZapata/base-adapter-helper/issues). Any contribution is welcome! In the meanwhile, you can still use ```getView(id)```on the adapter to do custom operations.
 
 ## QuickAdapter
