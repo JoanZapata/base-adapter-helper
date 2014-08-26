@@ -460,6 +460,7 @@ public class BaseAdapterHelper {
         return (T) view;
     }
 
+    /** This will only be set if you use an EnhancedQuickAdapter */
     public Object getAssociatedObject() {
         return associatedObject;
     }
