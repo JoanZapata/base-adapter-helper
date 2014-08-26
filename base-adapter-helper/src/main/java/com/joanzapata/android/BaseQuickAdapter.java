@@ -34,15 +34,15 @@ import java.util.List;
  */
 public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends BaseAdapter {
 
-	protected static final String TAG = BaseQuickAdapter.class.getSimpleName();
+    protected static final String TAG = BaseQuickAdapter.class.getSimpleName();
 
     protected final Context context;
 
-	protected final int layoutResId;
+    protected final int layoutResId;
 
-	protected final List<T> data;
+    protected final List<T> data;
 
-	protected boolean displayIndeterminateProgress = false;
+    protected boolean displayIndeterminateProgress = false;
 
     /**
      * Create a QuickAdapter.
@@ -97,7 +97,9 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
     public View getView(int position, View convertView, ViewGroup parent) {
         if (getItemViewType(position) == 0) {
             final H helper = getAdapterHelper(position, convertView, parent);
-            convert(helper, getItem(position));
+            T item = getItem(position);
+            helper.setAssociatedObject(item);
+            convert(helper, item);
             return helper.getView();
         }
 
@@ -131,7 +133,7 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
     }
 
     public void set(T oldElem, T newElem) {
-    	set(data.indexOf(oldElem), newElem);
+        set(data.indexOf(oldElem), newElem);
     }
 
     public void set(int index, T elem) {
@@ -140,8 +142,8 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
     }
 
     public void remove(T elem) {
-    	data.remove(elem);
-    	notifyDataSetChanged();
+        data.remove(elem);
+        notifyDataSetChanged();
     }
 
     public void remove(int index) {
@@ -178,19 +180,18 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
      */
     protected abstract void convert(H helper, T item);
 
-	/**
-	 * You can override this method to use a custom BaseAdapterHelper in order to fit your needs
-	 *
-	 * @param position The position of the item within the adapter's data set of the item whose view we want.
-	 * @param convertView The old view to reuse, if possible. Note: You should check that this view
-	 *        is non-null and of an appropriate type before using. If it is not possible to convert
-	 *        this view to display the correct data, this method can create a new view.
-	 *        Heterogeneous lists can specify their number of view types, so that this View is
-	 *        always of the right type (see {@link #getViewTypeCount()} and
-	 *        {@link #getItemViewType(int)}).
-	 * @param parent The parent that this view will eventually be attached to
-	 * @return An instance of BaseAdapterHelper
-	 */
-	protected abstract H getAdapterHelper(int position, View convertView, ViewGroup parent);
+    /**
+     * You can override this method to use a custom BaseAdapterHelper in order to fit your needs
+     * @param position    The position of the item within the adapter's data set of the item whose view we want.
+     * @param convertView The old view to reuse, if possible. Note: You should check that this view
+     *                    is non-null and of an appropriate type before using. If it is not possible to convert
+     *                    this view to display the correct data, this method can create a new view.
+     *                    Heterogeneous lists can specify their number of view types, so that this View is
+     *                    always of the right type (see {@link #getViewTypeCount()} and
+     *                    {@link #getItemViewType(int)}).
+     * @param parent      The parent that this view will eventually be attached to
+     * @return An instance of BaseAdapterHelper
+     */
+    protected abstract H getAdapterHelper(int position, View convertView, ViewGroup parent);
 
 }

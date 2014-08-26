@@ -30,7 +30,6 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Checkable;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -351,7 +350,7 @@ public class BaseAdapterHelper {
 
     /**
      * Sets the on click listener of the view.
-     * @param viewId The view id.
+     * @param viewId   The view id.
      * @param listener The on click listener;
      * @return The BaseAdapterHelper for chaining.
      */
@@ -363,7 +362,7 @@ public class BaseAdapterHelper {
 
     /**
      * Sets the on touch listener of the view.
-     * @param viewId The view id.
+     * @param viewId   The view id.
      * @param listener The on touch listener;
      * @return The BaseAdapterHelper for chaining.
      */
@@ -375,7 +374,7 @@ public class BaseAdapterHelper {
 
     /**
      * Sets the on long click listener of the view.
-     * @param viewId The view id.
+     * @param viewId   The view id.
      * @param listener The on long click listener;
      * @return The BaseAdapterHelper for chaining.
      */
@@ -388,7 +387,7 @@ public class BaseAdapterHelper {
     /**
      * Sets the tag of the view.
      * @param viewId The view id.
-     * @param tag The tag;
+     * @param tag    The tag;
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setTag(int viewId, Object tag) {
@@ -400,8 +399,8 @@ public class BaseAdapterHelper {
     /**
      * Sets the tag of the view.
      * @param viewId The view id.
-     * @param key The key of tag;
-     * @param tag The tag;
+     * @param key    The key of tag;
+     * @param tag    The tag;
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setTag(int viewId, int key, Object tag) {
@@ -412,19 +411,19 @@ public class BaseAdapterHelper {
 
     /**
      * Sets the checked status of a checkable.
-     * @param viewId The view id.
+     * @param viewId  The view id.
      * @param checked The checked status;
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setChecked(int viewId, boolean checked) {
-        Checkable view = (Checkable)retrieveView(viewId);
+        Checkable view = (Checkable) retrieveView(viewId);
         view.setChecked(checked);
         return this;
     }
 
     /**
      * Sets the adapter of a adapter view.
-     * @param viewId The view id.
+     * @param viewId  The view id.
      * @param adapter The adapter;
      * @return The BaseAdapterHelper for chaining.
      */
@@ -460,8 +459,13 @@ public class BaseAdapterHelper {
         return (T) view;
     }
 
-    /** This will only be set if you use an EnhancedQuickAdapter */
+    /** Retrieves the last converted object on this view. */
     public Object getAssociatedObject() {
         return associatedObject;
+    }
+
+    /** Should be called during convert */
+    public void setAssociatedObject(Object associatedObject) {
+        this.associatedObject = associatedObject;
     }
 }

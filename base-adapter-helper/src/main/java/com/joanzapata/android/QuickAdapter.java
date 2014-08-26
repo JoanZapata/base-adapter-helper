@@ -48,11 +48,11 @@ public abstract class QuickAdapter<T> extends BaseQuickAdapter<T, BaseAdapterHel
      * @param data        A new list is created out of this one to avoid mutable list
      */
     public QuickAdapter(Context context, int layoutResId, List<T> data) {
-        super(context,layoutResId,data);
+        super(context, layoutResId, data);
     }
 
-	protected BaseAdapterHelper getAdapterHelper(int position, View convertView, ViewGroup parent) {
-		return get(context, convertView, parent, layoutResId, position);
-	}
+    protected BaseAdapterHelper getAdapterHelper(int position, View convertView, ViewGroup parent) {
+        return get(context, convertView, parent, layoutResId, position);
+    }
 
 }
