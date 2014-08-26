@@ -460,4 +460,7 @@ public class BaseAdapterHelper {
         return (T) view;
     }
 
+    public Object getAssociatedObject() {
+        return associatedObject;
+    }
 }
