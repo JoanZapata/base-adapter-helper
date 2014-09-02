@@ -98,8 +98,8 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
         if (getItemViewType(position) == 0) {
             final H helper = getAdapterHelper(position, convertView, parent);
             T item = getItem(position);
-            helper.setAssociatedObject(item);
             convert(helper, item);
+            helper.setAssociatedObject(item);
             return helper.getView();
         }
 
