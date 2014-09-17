@@ -41,13 +41,18 @@
 <h1>
 <a name="get-it" class="anchor" href="#get-it"><span class="octicon octicon-link"></span></a>Get it</h1>
 
-<p>BaseAdapter Helper is now <strong><a href="http://search.maven.org/remotecontent?filepath=com/joanzapata/android/base-adapter-helper/1.1.5/base-adapter-helper-1.1.5.jar">available on Maven Central</a></strong>.</p>
+<p>BaseAdapter Helper is now <strong><a href="http://search.maven.org/remotecontent?filepath=com/joanzapata/android/base-adapter-helper/1.1.10/base-adapter-helper-1.1.10.jar">available on Maven Central</a></strong>.</p>
 
 <div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.joanzapata.android<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>base-adapter-helper<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>1.1.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.10<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+
+<p>or</p>
+
+<div class="highlight highlight-groovy"><pre><span class="n">compile</span> <span class="s1">'com.joanzapata.android:base-adapter-helper:1.1.10'</span>
 </pre></div>
 
 <h1>
@@ -83,6 +88,12 @@
 <code>setImageUrl()</code> Uses <a href="http://square.github.io/picasso/">Square's Picasso</a> to download the image and put it in an ImageView.</li>
 <li>
 <code>setImageBuilder()</code> Associates a <a href="http://square.github.io/picasso/">Square's Picasso</a> RequestBuilder to an ImageView.</li>
+<li><code>setOnClickListener()</code></li>
+<li><code>setOnTouchListener()</code></li>
+<li><code>setOnLongClickListener()</code></li>
+<li><code>setTag()</code></li>
+<li><code>setChecked()</code></li>
+<li><code>setAdapter()</code></li>
 <li>If you need something else, please <a href="https://github.com/JoanZapata/base-adapter-helper/issues">report an issue</a>. Any contribution is welcome! In the meanwhile, you can still use <code>getView(id)</code>on the adapter to do custom operations.</li>
 </ul><h2>
 <a name="quickadapter" class="anchor" href="#quickadapter"><span class="octicon octicon-link"></span></a>QuickAdapter</h2>
