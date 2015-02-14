@@ -27,13 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.Checkable;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RatingBar;
-import android.widget.TextView;
+import android.widget.*;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
@@ -65,7 +59,7 @@ public class BaseAdapterHelper {
     /** Package private field to retain the associated user object and detect a change */
     Object associatedObject;
 
-    private BaseAdapterHelper(Context context, ViewGroup parent, int layoutId, int position) {
+    protected BaseAdapterHelper(Context context, ViewGroup parent, int layoutId, int position) {
         this.context = context;
         this.position = position;
         this.views = new SparseArray<View>();
@@ -450,7 +444,7 @@ public class BaseAdapterHelper {
     }
 
     @SuppressWarnings("unchecked")
-    private <T extends View> T retrieveView(int viewId) {
+    protected <T extends View> T retrieveView(int viewId) {
         View view = views.get(viewId);
         if (view == null) {
             view = convertView.findViewById(viewId);
