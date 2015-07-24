@@ -377,7 +377,39 @@ public class BaseAdapterHelper {
         view.setOnLongClickListener(listener);
         return this;
     }
-
+  /**
+     * Sets the listview or gridview's item click listener of the view
+     * @param viewId  The view id.
+     * @param listener The item on click listener;
+     * @return The BaseViewHolder for chaining.
+     */
+    public BaseViewHolder setOnItemClickListener(int viewId,AdapterView.OnItemClickListener listener) {
+        AdapterView view = retrieveView(viewId);
+        view.setOnItemClickListener(listener);
+        return this;
+    }
+    /**
+     * Sets the listview or gridview's item long click listener of the view
+     * @param viewId The view id.
+     * @param listener   The item long click listener;
+     * @return The BaseViewHolder for chaining.
+     */
+    public BaseViewHolder setOnItemLongClickListener(int viewId,AdapterView.OnItemLongClickListener listener) {
+        AdapterView view = retrieveView(viewId);
+        view.setOnItemLongClickListener(listener);
+        return this;
+    }
+    /**
+     * Sets the listview or gridview's item selected click listener of the view
+     * @param viewId The view id.
+     * @param listener The item selected click listener;
+     * @return The BaseViewHolder for chaining.
+     */
+    public BaseViewHolder setOnItemSelectedClickListener(int viewId,AdapterView.OnItemSelectedListener listener) {
+        AdapterView view = retrieveView(viewId);
+        view.setOnItemSelectedListener(listener);
+        return this;
+    }
     /**
      * Sets the tag of the view.
      * @param viewId The view id.
