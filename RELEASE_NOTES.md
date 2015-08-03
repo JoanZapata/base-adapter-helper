@@ -1,3 +1,8 @@
+# 1.1.12
+* ```setOnItemClickListener```
+* ```setOnItemLongClickListener```
+* ```setOnItemSelectedListener```
+
 # 1.1.11
 * BaseAdapterHelper now allows subclassing.
 
