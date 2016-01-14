@@ -455,6 +455,7 @@ public class BaseAdapterHelper {
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setChecked(int viewId, boolean checked) {
+        View view = retrieveView(viewId);
         // View unable cast to Checkable
         if (view instanceof CompoundButton) {
             ((CompoundButton) view).setChecked(checked);
