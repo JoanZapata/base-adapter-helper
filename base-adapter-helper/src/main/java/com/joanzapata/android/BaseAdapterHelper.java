@@ -108,7 +108,7 @@ public class BaseAdapterHelper {
      * @param value  The text to put in the text view.
      * @return The BaseAdapterHelper for chaining.
      */
-    public BaseAdapterHelper setText(int viewId, String value) {
+    public BaseAdapterHelper setText(int viewId, CharSequence value) {
         TextView view = retrieveView(viewId);
         view.setText(value);
         return this;
@@ -412,6 +412,18 @@ public class BaseAdapterHelper {
         return this;
     }
     /**
+     * Sets the on checked change listener of the view.
+     *
+     * @param viewId The view id.
+     * @param listener  The checked change listener of compound button.
+     * @return The BaseAdapterHelper for chaining.
+     */
+    public BaseAdapterHelper setOnCheckedChangeListener(int viewId, CompoundButton.OnCheckedChangeListener listener) {
+        CompoundButton view = retrieveView(viewId);
+        view.setOnCheckedChangeListener(listener);
+        return this;
+    }
+    /**
      * Sets the tag of the view.
      * @param viewId The view id.
      * @param tag    The tag;
@@ -443,8 +455,13 @@ public class BaseAdapterHelper {
      * @return The BaseAdapterHelper for chaining.
      */
     public BaseAdapterHelper setChecked(int viewId, boolean checked) {
-        Checkable view = (Checkable) retrieveView(viewId);
-        view.setChecked(checked);
+        View view = retrieveView(viewId);
+        // View unable cast to Checkable
+        if (view instanceof CompoundButton) {
+            ((CompoundButton) view).setChecked(checked);
+        } else if (view instanceof CheckedTextView) {
+            ((CheckedTextView) view).setChecked(checked);
+        }
         return this;
     }
 
